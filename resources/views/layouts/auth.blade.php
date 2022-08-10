@@ -45,7 +45,7 @@
             margin-bottom: 30px;
             margin-top: 0;
             text-align: center;
-            color: #1f3d83;
+            color: #333;
         }
         .form-control {
             border: 1px solid #ccc;
@@ -59,7 +59,7 @@
             outline: none;
         }
         .btn--login {
-            background: #1f3d83;
+            background: #805533;
             border: none;
             border-radius: 7px;
             color: #fff;
@@ -89,6 +89,5 @@
     <div class="main-content">
         @yield('content')
     </div>
-
 </body>
 </html>

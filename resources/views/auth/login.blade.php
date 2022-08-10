@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+<title>Aqua City ISB | Login</title>
 @section('content')
 {{-- <div class="header py-7 py-lg-8 pt-lg-9"> --}}
     {{-- <div class="container">
@@ -25,7 +26,7 @@
                 <div id="login-form">
                     @include('flash::message')
                     <form method="POST" action="{{ route('login') }}" autocomplete="nope">
-                        <h1>Marketing</h1>
+                        <h1>Aqua City</h1>
                         @csrf
                         <div class="input-group input-group-merge input-group-alternative input-group-login mb-3">
                             <div class="input-group-prepend">
