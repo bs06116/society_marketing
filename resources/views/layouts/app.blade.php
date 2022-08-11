@@ -57,7 +57,6 @@
         </aside>
 
         <main class="main">
-
             <nav class="theme-navbar">
                 <div class="d-flex align-items-center">
                     {{-- <h1 class="mb-0"></h1> --}}
@@ -86,7 +85,6 @@
                     </form>
                 </div>
             </nav>
-
 
             @yield('content')
         </main>

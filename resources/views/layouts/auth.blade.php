@@ -59,7 +59,7 @@
             outline: none;
         }
         .btn--login {
-            background: #805533;
+            background: #d09621;
             border: none;
             border-radius: 7px;
             color: #fff;

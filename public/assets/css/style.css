@@ -1,13 +1,16 @@
 :root {
     --green: #2ac59f;
-    --blue: #805533;
+    --theme-clr: #d09621;
 }
 body {
     font-family: "Poppins", sans-serif;
     font-size: 14px;
-    color: #535249;
+    color: #444;
     /* background-color: white; */
     background-color: #fbfdff;
+}
+p {
+    color: grey;
 }
 button {
     cursor: pointer;
@@ -29,8 +32,8 @@ textarea {
 }
 /* Aside & Navbar */
 .theme-aside {
-    background-color: var(--blue);
-    width: 250px;
+    background-color: var(--theme-clr);
+    width: 240px;
     height: 100%;
     position: fixed;
     top: 0;
@@ -71,7 +74,7 @@ textarea {
 }
 .theme-aside ul.menu li a:hover,
 .theme-aside ul.menu li a.active {
-    background-color: #bdbdbd63;
+    background-color: #ffffff5c;
 }
 .theme-aside ul.menu li a {
     display: block;
@@ -171,8 +174,8 @@ textarea {
     position: absolute;
 }
 .main {
-    width: calc(100% - 250px);
-    margin-left: 250px;
+    width: calc(100% - 240px);
+    margin-left: 240px;
     transition: 0.3s ease-in-out;
 }
 .main.active {
@@ -236,12 +239,12 @@ textarea {
     margin: 0 15px 0 0;
 }
 .theme-tab button:hover {
-    color: var(--blue);
+    color: var(--theme-clr);
 }
 .theme-tab button.active::after {
     content: "";
     position: absolute;
-    background-color: var(--blue);
+    background-color: var(--theme-clr);
     border-radius: 5px;
     width: 50%;
     height: 2px;
@@ -249,7 +252,7 @@ textarea {
     left: 0;
 }
 .theme-tab button.active {
-    color: var(--blue) !important;
+    color: var(--theme-clr) !important;
     font-weight: 600;
 }
 .table-card {
@@ -296,18 +299,18 @@ textarea {
     border: 1px solid #d9d9d9;
     border-radius: 7px;
     font-size: 14px;
-    color: #aaaaaa;
-    padding: 8px 15px;
+    color: #989898;
+    padding: 7px 15px;
     transition: 0.2s all;
 }
 .theme-btn:hover {
-    background-color: var(--blue);
+    background-color: var(--theme-clr);
     color: white;
 }
 .theme-btn.cancel {
     background-color: transparent;
     border: none;
-    color: var(--blue);
+    color: var(--theme-clr);
     font-weight: 500;
 }
 /* selection with attr */
@@ -345,7 +348,7 @@ select[name="myTable_length"] {
     font-size: 13px !important;
     border: none !important;
     background: none !important;
-    color: var(--blue) !important;
+    color: var(--theme-clr) !important;
 }
 .paginate_button.current {
     font-weight: 600;
@@ -432,11 +435,8 @@ select[name="myTable_length"] {
 .modal-body {
     padding: 25px 20px;
 }
-#add-transaction-modal .modal-dialog {
-    max-width: 700px;
-}
-#add-transaction-modal .modal-dialog.big {
-    max-width: 780px;
+#search-file-modal .modal-dialog {
+    max-width: 680px;
 }
 .selection-div h2 {
     font-size: 19px;
@@ -533,8 +533,8 @@ select[name="myTable_length"] {
     background-color: #ccc;
 }
 .theme-checkbox input:checked ~ .checkmark {
-    background-color: var(--blue);
-    border-color: var(--blue);
+    background-color: var(--theme-clr);
+    border-color: var(--theme-clr);
 }
 .theme-checkbox .checkmark:after {
     content: "";
@@ -589,7 +589,7 @@ select[name="myTable_length"] {
     cursor: pointer;
     font-size: 13px;
     font-weight: 500;
-    color: var(--blue);
+    color: var(--theme-clr);
     user-select: none;
     width: fit-content;
 }
@@ -623,8 +623,33 @@ select[name="myTable_length"] {
     background-color: #ccc;
 }
 .theme-radio input:checked ~ .checkmark {
-    background-color: var(--blue);
+    background-color: var(--theme-clr);
 }
 .theme-radio input:checked ~ .checkmark:after {
     display: block;
+}
+.file-info-main {
+    padding: 20px 30px;
+}
+.file-info-main .avatar {
+    width: 83px;
+    height: 87px;
+    box-shadow: 0px 2px 6px #00000029;
+    border-radius: 16px;
+    margin-right: 20px;
+}
+.file-info-main .name {
+    font-size: 17px;
+}
+.file-info-main p {
+    font-size: 13px;
+}
+.file-info-main .info {
+    border-bottom: 1px solid #ececec;
+    padding: 7px 0 7px 0;
+}
+.file-info-main .info h5 {
+    width: 140px;
+    font-size: 14px;
+    color: #5c5c5c;
 }
