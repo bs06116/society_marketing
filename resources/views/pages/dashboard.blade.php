@@ -1,26 +1,61 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="main-padding">
+    <h1 class="heading">Financial Analysis</h1>
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="top-card">
+                <h2>Lorem ipsum</h2>
+                <h1>0</h1>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="top-card">
+                <h2>Lorem ipsum</h2>
+                <h1>0</h1>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="top-card">
+                <h2>Lorem ipsum</h2>
+                <h1>0</h1>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="top-card">
+                <h2>Lorem ipsum</h2>
+                <h1>0</h1>
+            </div>
+        </div>
+    </div>
     <div class="table-card">
-        <h1 class="heading">Filter File</h1>
-        <div class="d-flex align-items-center">
-            <div class="row flex-grow-1">
-                <div class="col-sm-6">
-                    <label for="" class="theme-label">Block</label>
-                    <select name="" id="" class="theme-select">
-                        <option value="" disabled selected>Select Block</option>
-                        <option value="">Block 1</option>
-                        <option value="">Block 2</option>
-                        <option value="">Block 3</option>
-                    </select>
-                </div>
-                <div class="col-sm-6">
-                    <label for="" class="theme-label">Plot Number</label>
-                    <input type="text" class="theme-input" placeholder="Plot number">
+        <div class="row">
+            <div class="d-flex align-items-center justify-content-between">
+                <h1 class="heading">Filter File</h1>
+                <a href="{{ url('create-file') }}">
+                    <button class="theme-btn">Add File</button>
+                </a>
+            </div>
+            <div class="col-lg-10">
+                <div class="d-flex align-items-center">
+                    <div class="row flex-grow-1">
+                        <div class="col-sm-6">
+                            <label for="" class="theme-label">Block</label>
+                            <select name="" id="" class="theme-select">
+                                <option value="" disabled selected>Select Block</option>
+                                <option value="">Block 1</option>
+                                <option value="">Block 2</option>
+                                <option value="">Block 3</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="theme-label">Plot Number</label>
+                            <input type="text" class="theme-input" placeholder="Plot number">
+                        </div>
+                    </div>
+                    <button class="theme-btn ms-3 mt-1" data-bs-toggle="modal" data-bs-target="#search-file-modal">Search</button>
                 </div>
             </div>
-            <button class="theme-btn ms-3 mt-1" data-bs-toggle="modal" data-bs-target="#search-file-modal">Search</button>
         </div>
     </div>
 </div>

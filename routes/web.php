@@ -45,3 +45,7 @@ Auth::routes();
 Route::get('/invoice', function () {
     return view('pages.invoice');
 });
+
+Route::get('/create-file', function () {
+    return view('pages.create-file');
+});

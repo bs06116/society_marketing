@@ -201,19 +201,18 @@ textarea {
     justify-content: space-between;
 }
 .top-card h2 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 0 5px 15px 0;
     position: relative;
-    color: #1f3d83;
 }
 .top-card h1 {
     font-size: 1.563rem;
     font-weight: 600;
     margin: 0;
-    color: #314266;
     word-break: break-all;
     line-height: 1.1;
+    color: grey;
 }
 .top-card img {
     margin-right: 15px;
@@ -310,7 +309,7 @@ textarea {
 .theme-btn.cancel {
     background-color: transparent;
     border: none;
-    color: var(--theme-clr);
+    color: #989898;
     font-weight: 500;
 }
 /* selection with attr */
@@ -358,6 +357,7 @@ select[name="myTable_length"] {
     font-size: 13px;
 }
 .theme-label {
+    color: #4a4a4a;
     font-size: 14px;
     font-weight: 500;
     margin: 0 0 5px 5px;
@@ -382,7 +382,7 @@ select[name="myTable_length"] {
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 7px;
-    padding: 0 12px;
+    padding: 6px 12px;
     font-size: 13px;
     color: #333;
     margin-bottom: 18px;
