@@ -293,6 +293,11 @@ textarea {
     font-weight: 600;
     margin: 0 0 25px;
 }
+.small-heading {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 0 18px;
+}
 .theme-btn {
     background-color: #f1f1f1;
     border: 1px solid #d9d9d9;
@@ -358,9 +363,9 @@ select[name="myTable_length"] {
 }
 .theme-label {
     color: #4a4a4a;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    margin: 0 0 5px 5px;
+    margin: 0 0 5px 2px;
 }
 .form-control {
     border-color: #ccc;
@@ -523,8 +528,8 @@ select[name="myTable_length"] {
     position: absolute;
     top: 0;
     left: 0;
-    width: 19px;
-    height: 19px;
+    width: 18px;
+    height: 18px;
     background: #fbfeff;
     border: 1px solid #bdbdbd;
     border-radius: 5px;
@@ -533,8 +538,8 @@ select[name="myTable_length"] {
     background-color: #ccc;
 }
 .theme-checkbox input:checked ~ .checkmark {
-    background-color: var(--theme-clr);
-    border-color: var(--theme-clr);
+    background-color: rgb(32, 82, 249);
+    border-color: rgb(32, 82, 249);
 }
 .theme-checkbox .checkmark:after {
     content: "";
@@ -652,4 +657,16 @@ select[name="myTable_length"] {
     width: 140px;
     font-size: 14px;
     color: #5c5c5c;
+}
+.f-15 {
+    font-size: 15px;
+}
+.f-13 {
+    font-size: 13px;
+}
+.weight-400 {
+    font-weight: 400;
+}
+.weight-300 {
+    font-weight: 300;
 }
