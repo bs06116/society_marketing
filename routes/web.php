@@ -49,3 +49,7 @@ Route::get('/invoice', function () {
 Route::get('/create-file', function () {
     return view('pages.create-file');
 });
+
+Route::get('/add-block', function () {
+    return view('pages.create-block');
+});
