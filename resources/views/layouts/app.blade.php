@@ -45,7 +45,6 @@
                 </li>
 
                 @canany(['user-view'])
-
                 <li>
                     <a href="{{ route('users.index') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
                         <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
@@ -63,6 +62,13 @@
                 </li>
                 @endcan
 
+
+                <li>
+                    <a href="{{ url('/add-block') }}" title="Block">
+                        <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
+                        <span>Add Block</span>
+                    </a>
+                </li>
             </ul>
         </aside>
 

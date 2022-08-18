@@ -658,15 +658,21 @@ select[name="myTable_length"] {
     font-size: 14px;
     color: #5c5c5c;
 }
+.f-13 {
+    font-size: 13px;
+}
 .f-15 {
     font-size: 15px;
 }
-.f-13 {
-    font-size: 13px;
+.f-16 {
+    font-size: 16px;
 }
 .weight-400 {
     font-weight: 400;
 }
 .weight-300 {
     font-weight: 300;
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
 }
