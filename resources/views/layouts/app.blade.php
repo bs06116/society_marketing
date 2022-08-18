@@ -53,6 +53,16 @@
                     </a>
                 </li>
                 @endcan
+                @canany(['create-form'])
+
+                <li>
+                    <a href="{{ route('forms.create') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
+                        <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
+                        <span>Application Form</span>
+                    </a>
+                </li>
+                @endcan
+
             </ul>
         </aside>
 

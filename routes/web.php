@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,15 +25,13 @@ Route::get('/', function () {
     }
     return view('auth/login');
 });
-
 Route::group(['middleware' => ['auth']], function() {
     Route::GET('profit-calculation', [HomeController::class, 'profit_calculation']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('customers', CustomerController::class);
+    Route::resource('forms', FormController::class);
+    // Route::resource('customers', CustomerController::class);
     Route::GET('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
-
-
 });
 Auth::routes();
 

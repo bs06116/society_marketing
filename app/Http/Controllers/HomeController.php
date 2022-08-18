@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,8 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $transaction = new Transaction();
-        return view('pages.dashboard', compact('transaction'));
+        return view('pages.dashboard');
     }
 
     public function profit_calculation()
