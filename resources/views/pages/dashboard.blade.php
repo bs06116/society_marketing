@@ -100,7 +100,9 @@
                     </div>
                     <div class="flex-center selection-footer">
                         <button class="theme-btn me-2">File View</button>
-                        <button class="theme-btn">Financial View</button>
+                        <a href="{{ url('financial_view') }}">
+                            <button class="theme-btn">Financial View</button>
+                        </a>
                     </div>
                 </div>
             </div>

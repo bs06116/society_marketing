@@ -649,11 +649,14 @@ select[name="myTable_length"] {
 .file-info-main p {
     font-size: 13px;
 }
-.file-info-main .info {
+.file-info-main p, .border_info p {
+    font-size: 13px;
+}
+.file-info-main .info, .border_info {
     border-bottom: 1px solid #ececec;
     padding: 7px 0 7px 0;
 }
-.file-info-main .info h5 {
+.file-info-main .info h5, .border_info h5 {
     width: 140px;
     font-size: 14px;
     color: #5c5c5c;
