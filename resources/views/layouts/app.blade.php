@@ -46,6 +46,27 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ url('/plots') }}" <?php if(request()->is('plots')){ echo "class='active'";} ?> title="Plots">
+                        <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
+                        <span>Plots</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url('/booked-plots') }}" <?php if(request()->is('booked-plots')){ echo "class='active'";} ?> title="Booked Plots">
+                        <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
+                        <span>Booked Plots</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url('/add-block') }}" title="Add Block">
+                        <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
+                        <span>Add Block</span>
+                    </a>
+                </li>
+
                 @canany(['user-view'])
                 <li>
                     <a href="{{ route('users.index') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
@@ -63,14 +84,6 @@
                     </a>
                 </li>
                 @endcan
-
-
-                <li>
-                    <a href="{{ url('/add-block') }}" title="Block">
-                        <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
-                        <span>Add Block</span>
-                    </a>
-                </li>
             </ul>
         </aside>
 

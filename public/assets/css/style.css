@@ -679,3 +679,8 @@ select[name="myTable_length"] {
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
+.plot-size-heading {
+    margin: 0 0 12px 5px;
+    font-size: 18px;
+    font-weight: 600;
+}

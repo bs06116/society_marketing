@@ -3,27 +3,21 @@
 <div class="main-padding">
     <h1 class="heading">Financial Analysis</h1>
     <div class="row mb-4">
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-4 col-md-6">
             <div class="top-card">
-                <h2>Lorem ipsum</h2>
+                <h2>Total Worth of Plots</h2>
                 <h1>0</h1>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-4 col-md-6">
             <div class="top-card">
-                <h2>Lorem ipsum</h2>
+                <h2>Total Payment</h2>
                 <h1>0</h1>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-4 col-md-6">
             <div class="top-card">
-                <h2>Lorem ipsum</h2>
-                <h1>0</h1>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="top-card">
-                <h2>Lorem ipsum</h2>
+                <h2>Total Balance</h2>
                 <h1>0</h1>
             </div>
         </div>

@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <label for="" class="theme-label mt-5 ms-0 plots-type-label"><span class="f-16">Add Installment</span></label>
+        <label class="theme-label mt-5 ms-0 plots-type-label"><span class="f-16">Add Installment</span></label>
         <div class="row">
             <div class="col-sm-4">
                 <label for="" class="theme-label">Installment #</label>

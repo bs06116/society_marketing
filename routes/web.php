@@ -53,6 +53,14 @@ Route::get('/invoice', function () {
     return view('pages.invoice');
 });
 
+Route::get('/plots', function () {
+    return view('pages.plots');
+});
+
+Route::get('/booked-plots', function () {
+    return view('pages.booked-plots');
+});
+
 // Route::get('/create-file', function () {
 //     return view('pages.create-file');
 // });
