@@ -47,11 +47,18 @@
                 <label for="" class="theme-label">Amount</label>
                 <input type="number" class="theme-input" placeholder="Amount">
             </div>
-            <div class="col-sm-4">
-                <label for="" class="theme-label">Date</label>
-                <input type="date" class="theme-input" placeholder="Date">
+            <div class="col-sm-4 d-flex">
+                <div class="flex-grow-1">
+                    <label for="" class="theme-label">Date</label>
+                    <input type="date" class="theme-input" placeholder="Date">
+                </div>
+                
+                <button type="button" class="btn-none ms-2" id="installment-plus">
+                    <img src="{{ asset('assets/images/svg/plus.svg') }}" alt="+" width="25" class="mt-2">
+                </button>
             </div>
         </div>
+        <div id="append-wrapper"></div>
 
         <div class="d-flex justify-content-end pt-3">
             <button class="theme-btn px-4">Add Installment</button>
@@ -60,7 +67,24 @@
 </div>
 <script>
     $(document).ready(function(){
-        
+        $('#installment-plus').click(function() {
+           $('#append-wrapper').append(`
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="" class="theme-label">Installment #</label>
+                        <input type="number" class="theme-input" placeholder="Installment #">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="" class="theme-label">Amount</label>
+                        <input type="number" class="theme-input" placeholder="Amount">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="" class="theme-label">Date</label>
+                        <input type="date" class="theme-input" placeholder="Date">
+                    </div>
+                </div>
+           `);
+        });
     });
 </script>
 @endsection
