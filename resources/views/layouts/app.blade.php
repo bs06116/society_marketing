@@ -22,6 +22,8 @@
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets/js/core.js') }}"></script>
+    <script src="{{asset('assets/js/validator/jquery.validate.js')}}"></script>
+    <script src="{{asset('assets/js/validator/additional.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/jquery-confirm.min.css')}}" type="text/css">
  </head>
 <body>

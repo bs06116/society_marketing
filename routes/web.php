@@ -8,6 +8,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FormController;
 
+
+Route::get('/clear-cache', function() {
+    Artisan::call('optimize');
+
+    echo "Cleared!";
+    die;
+    // return what you want
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,10 +53,11 @@ Route::get('/invoice', function () {
     return view('pages.invoice');
 });
 
-Route::get('/create-file', function () {
-    return view('pages.create-file');
-});
+// Route::get('/create-file', function () {
+//     return view('pages.create-file');
+// });
 
 Route::get('/add-block', function () {
+
     return view('pages.create-block');
 });
