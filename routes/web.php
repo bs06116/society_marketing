@@ -61,3 +61,7 @@ Route::get('/add-block', function () {
 
     return view('pages.create-block');
 });
+
+Route::get('/financial_view', function () {
+    return view('pages.financial-view');
+});
