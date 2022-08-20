@@ -1,7 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <div class="main-padding">
-    <h1 class="heading">Plots</h1>
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <h1 class="heading">Plots</h1>
+        <a href="{{ url('/booked-plots') }}">
+            <button class="theme-btn">Booked Plots</button>
+        </a>
+    </div>
     <div class="row mb-4">
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
