@@ -1,5 +1,5 @@
 :root {
-    --green: #2ac59f;
+    --green: #009200;
     --theme-clr: #e2a324;
 }
 body {
@@ -8,6 +8,12 @@ body {
     color: #444;
     /* background-color: white; */
     background-color: #fbfdff;
+}
+.theme-clr {
+    color: var(--theme-clr) !important;
+}
+.green-clr {
+    color: var(--green) !important;
 }
 p {
     color: grey;
@@ -88,9 +94,8 @@ textarea {
 .theme-aside ul.menu li a img {
     width: 18px;
     height: 18px;
-    margin-right: 10px;
+    margin-right: 8px;
 }
-
 .theme-navbar {
     width: 100%;
     height: 70px;
@@ -664,6 +669,9 @@ select[name="myTable_length"] {
 .f-13 {
     font-size: 13px;
 }
+.f-14 {
+    font-size: 14px;
+}
 .f-15 {
     font-size: 15px;
 }
@@ -683,4 +691,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     margin: 0 0 12px 5px;
     font-size: 18px;
     font-weight: 600;
+}
+.error {
+    color: #FF6873;
 }

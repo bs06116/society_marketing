@@ -61,9 +61,17 @@ Route::get('/booked-plots', function () {
     return view('pages.booked-plots');
 });
 
-// Route::get('/create-file', function () {
-//     return view('pages.create-file');
-// });
+Route::get('/commission-calculation', function () {
+    return view('pages.commission-calc');
+});
+
+Route::get('/dashboard-dealer', function () {
+    return view('pages.dashboard-dealer');
+});
+
+Route::get('/create-file', function () {
+    return view('pages.create-file');
+});
 
 Route::get('/add-block', function () {
 

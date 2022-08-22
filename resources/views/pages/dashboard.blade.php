@@ -30,7 +30,7 @@
                     <button class="theme-btn">Add File</button>
                 </a>
             </div>
-            <div class="col-lg-10">
+            <div class="col-lg-10 mb-3">
                 <div class="d-flex align-items-center">
                     <div class="row flex-grow-1">
                         <div class="col-sm-6">
