@@ -1,16 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <div class="main-padding">
+    <form id="add-block">
     <div class="table-card">
         <h1 class="heading">Add Block</h1>
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">Block Name</label>
-                <input type="text" class="theme-input" placeholder="Block name">
+                <input type="text" class="theme-input" id="name" name="name" placeholder="Block name">
             </div>
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">Plot Category</label>
-                <select name="" id="plot-catgeory" class="theme-select">
+                <select id="plot-catgeory" name="plot_catergory" class="theme-select">
                     <option value="" selected disabled>Select Category</option>
                     <option value="residential">Residential</option>
                     <option value="commercial">Commercial</option>
@@ -19,7 +20,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">Total Streets</label>
-                <input type="number" class="theme-input" placeholder="Total Streets">
+                <input type="number" class="theme-input" name="total_street" placeholder="Total Streets">
             </div>
         </div>
         <div>
@@ -29,7 +30,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <label for="" class="theme-label">Plot Size</label>
-                            <select name="" id="plot-size" class="theme-select">
+                            <select  id="plot-size" name="plot_size[]" class="theme-select">
                                 <option value="" selected disabled>Select size</option>
                                 <option value="75x90">75x90</option>
                                 <option value="50x90">50x90</option>
@@ -48,7 +49,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 plot-size-divs" style="display:none;">
                     <label for="" class="theme-label">Plots</label>
-                    <input type="number" class="theme-input" placeholder="Plots">
+                    <input type="number" class="theme-input" name="total_plot[]" placeholder="Plots">
                 </div>
             </div>
         </div>
@@ -59,7 +60,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <label for="" class="theme-label">Plot Size</label>
-                            <select name="" id="plot-size" class="theme-select">
+                            <select  id="plot-size" name="plot_size[]" class="theme-select">
                                 <option value="" selected disabled>Select size</option>
                                 <option value="30x40">30x40</option>
                                 <option value="25x40">25x40</option>
@@ -74,7 +75,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 plot-size-divs" style="display:none;">
                     <label for="" class="theme-label">Plots</label>
-                    <input type="number" class="theme-input" placeholder="Plots">
+                    <input type="number" class="theme-input" name="total_plot[]" placeholder="Plots">
                 </div>
             </div>
         </div>
@@ -83,7 +84,10 @@
             <button class="theme-btn" style="width:150px;">Add Block</button>
         </div>
     </div>
+</form>
 </div>
+@endsection
+@push('scripts')
 <script>
     $(document).ready(function(){
         $('#plot-catgeory').change(function(){
@@ -125,94 +129,47 @@
                     </div>
                     <div class="col-lg-4 col-md-6 plot-size-divs">
                         <label for="" class="theme-label">Plots</label>
-                        <input type="number" class="theme-input" placeholder="Plots">
+                        <input type="number" class="theme-input" name="total_plot[]" placeholder="Plots">
                     </div>
                 </div>
             `);
         });
     });
 </script>
-@endsection
-@push('scripts')
 <script>
-$("#register-form").validate({
+$("#add-block").validate({
     rules: {
         name: {
             required: true,
             maxlength: 50
         },
-        username: {
+        plot_catergory: {
 
             required: true,
         },
-        number: {
-            required: true,
-            maxlength: 15
-        },
-        whatsapp_no: {
+        total_street: {
             required: true,
             maxlength: 15
         },
-        password: {
-            required: true,
-            minlength: 6,
-            maxlength: 20
-        },
-
-    },
-
-    messages: {
-
-        name: {
-            required: "الرجاء إدخال الاسم",
-            maxlength: "يجب ألا يزيد طول اسمك عن 50 حرفًا"
-        },
-        number: {
-            required: "رقم الهاتف مطلوب",
-            maxlength: "يجب أن يكون الحد الأقصى لطول الرقم 15 حرفًا"
-        },
-        whatsapp_no: {
-            required: "رقم الهاتف مطلوب",
-            maxlength: "يجب أن يكون الحد الأقصى لطول الرقم 15 حرفًا"
-        },
-        email: {
-            required: "البريد الالكتروني مطلوب",
-            email: "رجاء قم بإدخال بريد الكتروني صحيح"
-        },
-        password: {
-            required: "كلمة المرور مطلوبة",
-            maxlength: "يجب ألا تزيد كلمة مرورك عن 20 حرفًا",
-            minlength: "يجب أن تكون كلمة المرور الخاصة بك أكثر من 5 أحرف"
-        },
-        username: {
-            required: "اسم المستخدم مطلوب",
-            minlength: "يجب أن يكون طول اسم المستخدم أكبر من 5 أرقام",
-            maxlength: "يجب أن يكون طول اسم المستخدم أقل من 12 رقمًا"
-        },
-        store_category: {
-            required: "الفئة مطلوبة"
-        }
 
     },
     submitHandler: function(form) {
         event.preventDefault();
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
-            url: "{{route('register')}}",
+            url: "{{route('blocks.store')}}",
             type: "POST",
-            data: dataSet,
-            processData: false,
-            contentType: false,
+            data: $(form).serialize(),
             success: function(response) {
 
 
             },
             error: function(response) {
-                $.each(response.responseJSON.errors, function(field_name, error) {
-                    $(document).find(`[name="${field_name}"]`).after(
-                    `<label class="error request-error">${error}</label>`)
-                })
-                $('.submit-trigger').removeAttr('disabled');
+
             }
         });
     }

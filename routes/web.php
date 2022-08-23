@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\BlockController;
+
 
 
 Route::get('/clear-cache', function() {
@@ -40,6 +42,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('forms', FormController::class);
     // Route::resource('customers', CustomerController::class);
     Route::GET('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
+    Route::resource('blocks', BlockController::class);
+
 });
 Auth::routes();
 
@@ -57,10 +61,10 @@ Route::get('/invoice', function () {
 //     return view('pages.create-file');
 // });
 
-Route::get('/add-block', function () {
+// Route::get('/add-block', function () {
 
-    return view('pages.create-block');
-});
+//     return view('pages.create-block');
+// });
 
 Route::get('/financial_view', function () {
     return view('pages.financial-view');
