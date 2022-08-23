@@ -57,9 +57,25 @@ Route::get('/invoice', function () {
     return view('pages.invoice');
 });
 
-// Route::get('/create-file', function () {
-//     return view('pages.create-file');
-// });
+Route::get('/plots', function () {
+    return view('pages.plots');
+});
+
+Route::get('/booked-plots', function () {
+    return view('pages.booked-plots');
+});
+
+Route::get('/commission-calculation', function () {
+    return view('pages.commission-calc');
+});
+
+Route::get('/dashboard-dealer', function () {
+    return view('pages.dashboard-dealer');
+});
+
+Route::get('/create-file', function () {
+    return view('pages.create-file');
+});
 
 // Route::get('/add-block', function () {
 

@@ -47,7 +47,30 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ url('/dashboard-dealer') }}" title="Dashboard">
+                        <img src="{{ asset('assets/images/svg/dashboard.svg') }}" alt="">
+                        <span>Dashboard (Dealer)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/commission-calculation') }}" <?php if(request()->is('commission-calculation')){ echo "class='active'";} ?> title="Commission Calculation">
+                        <img src="{{ asset('assets/images/svg/dashboard.svg') }}" alt="">
+                        <span>Commission Calculation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/plots') }}" <?php if(request()->is('plots')){ echo "class='active'";} ?> title="Plots">
+                        <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
+                        <span>Plots</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/add-block') }}" title="Add Block">
+                        <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
+                        <span>Add Block</span>
+                    </a>
+                </li>
                 @canany(['user-view'])
                 <li>
                     <a href="{{ route('users.index') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
@@ -57,7 +80,6 @@
                 </li>
                 @endcan
                 @canany(['create-form'])
-
                 <li>
                     <a href="{{ route('forms.create') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
                         <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
@@ -65,8 +87,6 @@
                     </a>
                 </li>
                 @endcan
-
-
                 <li>
                     <a href="{{ route('blocks.create') }}" title="Block">
                         <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">

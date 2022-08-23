@@ -3,27 +3,21 @@
 <div class="main-padding">
     <h1 class="heading">Financial Analysis</h1>
     <div class="row mb-4">
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-4 col-md-6">
             <div class="top-card">
-                <h2>Lorem ipsum</h2>
+                <h2>Total Worth of Plots</h2>
                 <h1>0</h1>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-4 col-md-6">
             <div class="top-card">
-                <h2>Lorem ipsum</h2>
+                <h2>Total Payment</h2>
                 <h1>0</h1>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-4 col-md-6">
             <div class="top-card">
-                <h2>Lorem ipsum</h2>
-                <h1>0</h1>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="top-card">
-                <h2>Lorem ipsum</h2>
+                <h2>Total Balance</h2>
                 <h1>0</h1>
             </div>
         </div>
@@ -36,7 +30,7 @@
                     <button class="theme-btn">Add File</button>
                 </a>
             </div>
-            <div class="col-lg-10">
+            <div class="col-lg-10 mb-3">
                 <div class="d-flex align-items-center">
                     <div class="row flex-grow-1">
                         <div class="col-sm-6">
