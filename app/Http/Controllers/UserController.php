@@ -44,12 +44,13 @@ class UserController extends Controller
         $skip = request('start');
         $take = request('length');
         $search = request('search');
-        $query = User::query()->whereHas(
-            'roles', function($q){
-                $q->where('name', 'Admin');
-                $q->orWhere('name', 'Cashier');
-            }
-        );
+        $query = User::query();
+        // $query = User::query()->whereHas(
+        //     'roles', function($q){
+        //         $q->where('name', 'Admin');
+        //         $q->orWhere('name', 'Cashier');
+        //     }
+        // );
         $query->orderBy('id', 'DESC')->get();
         $recordsTotal = $query->count();
         if (isset($search['value'])) {

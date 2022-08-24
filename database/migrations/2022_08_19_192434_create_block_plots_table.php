@@ -18,6 +18,7 @@ class CreateBlockPlotsTable extends Migration
             $table->string('plot_size')->nullable();
             $table->string('total_plot')->nullable();
             $table->string('block_id')->nullable();
+            $table->string('block_category')->nullable();
             $table->timestamps();
         });
     }

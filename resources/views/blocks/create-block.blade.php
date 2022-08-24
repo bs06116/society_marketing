@@ -42,7 +42,7 @@
                                 <option value="25x30">25x30</option>
                             </select>
                         </div>
-                        <button type="button" class="btn-none plot-size-plus">
+                        <button type="button" data-val="residential" class="btn-none plot-size-plus">
                             <img src="{{ asset('assets/images/svg/plus.svg') }}" alt="+" width="25" class="mt-2">
                         </button>
                     </div>
@@ -51,6 +51,7 @@
                     <label for="" class="theme-label">Plots</label>
                     <input type="number" class="theme-input" name="total_plot[]" placeholder="Plots">
                 </div>
+                <input type="hidden" name="block_category[]" value="residential">
             </div>
         </div>
         <div class="commercialPlots-wrapper pt-3" style="display:none;">
@@ -68,7 +69,7 @@
                                 <option value="25x30">25x30</option>
                             </select>
                         </div>
-                        <button type="button" class="btn-none plot-size-plus">
+                        <button type="button" data-val="commercial" class="btn-none plot-size-plus">
                             <img src="{{ asset('assets/images/svg/plus.svg') }}" alt="+" width="25" class="mt-2">
                         </button>
                     </div>
@@ -78,6 +79,8 @@
                     <input type="number" class="theme-input" name="total_plot[]" placeholder="Plots">
                 </div>
             </div>
+            <input type="hidden" name="block_category[]" value="commercial">
+
         </div>
 
         <div class="d-flex justify-content-end pt-3">
@@ -90,6 +93,7 @@
 @push('scripts')
 <script>
     $(document).ready(function(){
+
         $('#plot-catgeory').change(function(){
             $('.plot-size-append-divs').remove();
             $('.plot-size-divs').show();
@@ -107,6 +111,7 @@
                     <option value="25x45">25x40</option>
                     <option value="25x30">25x30</option>
                 `);
+
             }else if(plotCategory == 'commercial'){
                 $('.commercialPlots-wrapper, .plots-type-label').hide();
                 $('#plot-size').html(`
@@ -116,12 +121,20 @@
                     <option value="40x50">40x50</option>
                     <option value="25x30">25x30</option>
                 `);
+
             }else if(plotCategory == 'both'){
                 $('.commercialPlots-wrapper, .plots-type-label').show();
             }
         });
         $('.plot-size-plus').click(function(){
-            var parentHtml = $(this).parent().find('.flex-grow-1').html();
+           var residentHtml =  $(this).attr('data-val');
+           var plot_category = '';
+           if(residentHtml == 'commercial'){
+            plot_category = '<input type="hidden"  name="block_category[]" value="commercial">';
+           }else{
+            plot_category = '<input type="hidden"  name="block_category[]" value="residential">';
+           }
+           var parentHtml = $(this).parent().find('.flex-grow-1').html();
             $(this).parent().parent().parent().after(`
                 <div class="row plot-size-append-divs">
                     <div class="col-lg-4 col-md-6 plot-size-div">
@@ -131,6 +144,7 @@
                         <label for="" class="theme-label">Plots</label>
                         <input type="number" class="theme-input" name="total_plot[]" placeholder="Plots">
                     </div>
+                    ${plot_category}
                 </div>
             `);
         });
@@ -165,7 +179,8 @@ $("#add-block").validate({
             type: "POST",
             data: $(form).serialize(),
             success: function(response) {
-
+                toastr.success(response.msg);
+                setTimeout(function(){ window.location = "{{route('blocks.index')}}" }, 3000);
 
             },
             error: function(response) {

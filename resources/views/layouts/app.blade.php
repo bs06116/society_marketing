@@ -27,6 +27,10 @@
     <script src="{{asset('assets/js/validator/jquery.validate.js')}}"></script>
     <script src="{{asset('assets/js/validator/additional.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/jquery-confirm.min.css')}}" type="text/css">
+    <link rel="stylesheet" type="text/css"
+     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
  </head>
 <body>
     <div id="app">
@@ -66,9 +70,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/add-block') }}" title="Add Block">
+                    <a href="{{ route('blocks.index') }}" title="Add Block">
                         <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
-                        <span>Add Block</span>
+                        <span>Block</span>
                     </a>
                 </li>
                 @canany(['user-view'])
@@ -87,12 +91,7 @@
                     </a>
                 </li>
                 @endcan
-                <li>
-                    <a href="{{ route('blocks.create') }}" title="Block">
-                        <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
-                        <span>Add Block</span>
-                    </a>
-                </li>
+
             </ul>
         </aside>
 
