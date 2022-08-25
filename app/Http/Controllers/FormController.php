@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Form;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use App\Models\Installment;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use Response;
 
 class FormController extends Controller
 {
@@ -180,5 +183,31 @@ class FormController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
+    }
+    public function addFinancial(Request $request)
+    {
+        $this->validate($request, [
+            'total_worth' => 'required',
+            'down_payment' => 'required',
+        ]);
+        $dataInstallment = [];
+        $name = $request->name;
+        $amount = $request->amount;
+        $installment_date = $request->installment_date;
+        $form = Form::find(1);
+        if($form){
+            Installment::where('block_id',1)->delete();
+            foreach($amount as $index=>$a){
+                $dataPlot[] = array('name' =>$name[$index],'amount'=>$amount[$index],
+                'installment_date'=>$installment_date[$index],'	forms_id'=>1);
+            }
+            Installment::insert($dataInstallment);
+        }
+        return Response::json([
+            'success' => true,
+            'status'=> 400,
+            'msg'=> "Finical has been save successfully",
+        ]);
+
     }
 }

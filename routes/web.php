@@ -39,7 +39,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::GET('profit-calculation', [HomeController::class, 'profit_calculation']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::POST('add-financial', [FormController::class, 'addFinancial'])->name('financial.add');
     Route::resource('forms', FormController::class);
+
     // Route::resource('customers', CustomerController::class);
     Route::GET('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
     Route::resource('blocks', BlockController::class);

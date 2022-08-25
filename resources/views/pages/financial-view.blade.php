@@ -6,17 +6,18 @@
             <h1 class="heading">Financial View</h1>
             <button class="theme-btn">Download Receipt</button>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="" class="theme-label">Total Worth</label>
-                <input type="number" class="theme-input" placeholder="Total worth">
-            </div>
-            <div class="col-md-6">
-                <label for="" class="theme-label">Down Payment</label>
-                <input type="number" class="theme-input" placeholder="Down payment">
-            </div>
-        </div>
 
+        <form id="add-financial">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="theme-label">Total Worth</label>
+                    <input type="number" name="total_worth" id="total_worth" class="theme-input" placeholder="Total worth">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="theme-label">Down Payment</label>
+                    <input type="number" name="down_payment" class="theme-input" placeholder="Down payment">
+                </div>
+            </div>
         <div class="row">
             <div class="col-6">
                 <div class="border_info border-0">
@@ -31,29 +32,33 @@
                 </div>
             </div>
         </div>
-        
+
         <label class="theme-label mt-3 ms-0 plots-type-label"><span class="f-16">Add Installment</span></label>
         <div class="row">
             <div class="col-sm-4">
                 <label for="" class="theme-label">Installment #</label>
-                <input type="number" class="theme-input" placeholder="Installment #">
+                <input type="text" name="name[]" class="theme-input" placeholder="Installment #">
             </div>
             <div class="col-sm-4">
                 <label for="" class="theme-label">Amount</label>
-                <input type="number" class="theme-input" placeholder="Amount">
+                <input type="number" name="amount[]" class="theme-input" placeholder="Amount">
             </div>
             <div class="col-sm-4 d-flex">
                 <div class="flex-grow-1">
                     <label for="" class="theme-label">Date</label>
-                    <input type="date" class="theme-input" placeholder="Date">
+                    <input type="date" name="installment_date[]" class="theme-input" placeholder="Date">
                 </div>
-                
+
                 <button type="button" class="btn-none ms-2" id="installment-plus">
                     <img src="{{ asset('assets/images/svg/plus.svg') }}" alt="+" width="25" class="mt-2">
                 </button>
             </div>
         </div>
         <div id="append-wrapper"></div>
+        <div class="d-flex justify-content-end pt-3">
+            <button class="theme-btn px-4">Add Installment</button>
+        </div>
+    </form>
 
         <div class="row">
             <div class="col-sm-4">
@@ -78,12 +83,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="d-flex justify-content-end pt-3">
-            <button class="theme-btn px-4">Add Installment</button>
-        </div>
     </div>
 </div>
+
+@endsection
+@push('scripts')
 <script>
     $(document).ready(function(){
         $('#installment-plus').click(function() {
@@ -91,19 +95,54 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <label for="" class="theme-label">Installment #</label>
-                        <input type="number" class="theme-input" placeholder="Installment #">
+                        <input type="text"  name="name[]" class="theme-input" placeholder="Installment #">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="theme-label">Amount</label>
-                        <input type="number" class="theme-input" placeholder="Amount">
+                        <input type="number"  name="amount[]"  class="theme-input" placeholder="Amount">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="theme-label">Date</label>
-                        <input type="date" class="theme-input" placeholder="Date">
+                        <input type="date" name="installment_date[]" class="theme-input" placeholder="Date">
                     </div>
                 </div>
            `);
         });
     });
 </script>
-@endsection
+<script>
+    $("#add-financial").validate({
+        rules: {
+            total_worth: {
+                required: true,
+                maxlength: 50
+            },
+            down_payment: {
+                required: true,
+            }
+
+        },
+        submitHandler: function(form) {
+            event.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('financial.add')}}",
+                type: "POST",
+                data: $(form).serialize(),
+                success: function(response) {
+                    toastr.success(response.msg);
+                    setTimeout(function(){ window.location = "{{route('forms.index')}}" }, 3000);
+
+                },
+                error: function(response) {
+
+                }
+            });
+        }
+    })
+    </script>
+ @endpush

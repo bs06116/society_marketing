@@ -182,27 +182,8 @@ class BlockController extends Controller
             'status'=> 400,
             'msg'=> "Block has been save successfully",
         ]);
-
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'sometimes',
-            'phone_number' => 'required',
-            'roles' => 'required'
-        ]);
-
-        $input = $request->all();
-        if(!empty($input['password'])){
-            $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = Arr::except($input,array('password'));
-        }
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-        $user->assignRole($request->input('roles'));
-        return redirect()->route('users.index')->with('success','User updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -216,4 +197,7 @@ class BlockController extends Controller
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
+
+
+
 }
