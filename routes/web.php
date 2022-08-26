@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::resource('customers', CustomerController::class);
     Route::GET('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
     Route::resource('blocks', BlockController::class);
+    Route::GET('get-plot-size/{block_id}', [BlockController::class, 'get_plot_size']);
+    Route::GET('get-blocks/{category}', [BlockController::class, 'get_blocks']);
+    Route::POST('save-form', [FormController::class, 'save_form']);
 
 });
 Auth::routes();

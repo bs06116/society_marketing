@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+@if(session()->has('success_msg'))
+    <div class="alert alert-success mt-3">
+        {{ session()->get('success_msg') }}
+    </div>
+@endif
 <div class="main-padding">
     <h1 class="heading">Financial Analysis</h1>
     <div class="row mb-4">

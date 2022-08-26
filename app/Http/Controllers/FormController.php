@@ -210,4 +210,73 @@ class FormController extends Controller
         ]);
 
     }
+
+    public function save_form(Request $request)
+    {
+        $this->validate($request, [
+            'app_no' => 'required',
+            'reg_no' => 'required',
+            'form_no' => 'required',
+            'type' => 'required',
+            'block' => 'required',
+            'plot_size' => 'required',
+            'plot_no' => 'required',
+            'street_no' => 'required',
+            'location_type' => 'required',
+            'preference_of_plot' => 'required',
+            'payment' => 'required',
+            'extra_land' => 'required',
+            'extra_land_cost' => 'required',
+            'booking_date' => 'required',
+            'total_price' => 'required',
+            'name_of_applicant' => 'required',
+            'applicant_type' => 'required',
+            'cnic_no' => 'required',
+            'passport_no' => 'required',
+            'mailing_address' => 'required',
+            'permanent_address' => 'required',
+            'phone_no' => 'required',
+            'mobile_no' => 'required',
+            'email' => 'required',
+            'nominee_name' => 'required',
+            'nominee_type' => 'required',
+            'nominee_cnic' => 'required',
+            'nominee_passport' => 'required',
+        ]);
+
+        $form = [
+            'app_no'=>$request->app_no,
+            'reg_no'=>$request->reg_no,
+            'form_no'=>$request->form_no,
+            'plot_type'=>$request->type,
+            'block_no'=>$request->block,
+            'plot_size'=>$request->plot_size,
+            'plot_no'=>$request->plot_no,
+            'street_no'=>$request->street_no,
+            'location'=>$request->location_type,
+            'payment_type'=>$request->payment,
+            'extra_lan'=>$request->extra_land,
+            'extra_land_cost'=>$request->extra_land_cost,
+            'booking_data'=>$request->booking_date,
+            'total_price'=>$request->total_price,
+            'applicant_name'=>$request->name_of_applicant,
+            'aplicant_type'=>$request->applicant_type,
+            'cnic'=>$request->cnic_no,
+            'passport_no'=>$request->passport_no,
+            'mail_address'=>$request->mailing_address,
+            'permanent_address'=>$request->permanent_address,
+            'phone_no'=>$request->phone_no,
+            'mobile_no'=>$request->mobile_no,
+            'email'=>$request->email,
+            'nominee_applicant_name'=>$request->nominee_name,
+            'nominee_applicant_type'=>$request->nominee_type,
+            'nominee_applicant_cnic'=>$request->nominee_cnic,
+            'nominee_applicant_passport'=>$request->nominee_passport,
+            'preference_of_plot'=>$request->preference_of_plot,
+        ];
+
+        Form::Create($form);
+
+        return redirect('dashboard')->with(['success_msg'=> 'Form submitted successfully']);
+    }
 }

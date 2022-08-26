@@ -198,6 +198,17 @@ class BlockController extends Controller
                         ->with('success','User deleted successfully');
     }
 
+    public function get_plot_size($block_id)
+    {
+        $plot_size = BlockPlot::where(['block_id'=> $block_id])->get();
+        return $plot_size;
+    }
+
+    public function get_blocks($category)
+    {
+        return Block::where(['plot_catergory'=> $category])->get();
+    }
+
 
 
 }
