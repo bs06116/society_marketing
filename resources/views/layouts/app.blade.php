@@ -59,7 +59,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/commission-calculation') }}" <?php if(request()->is('commission-calculation')){ echo "class='active'";} ?> title="Commission Calculation">
-                        <img src="{{ asset('assets/images/svg/dashboard.svg') }}" alt="">
+                        <img src="{{ asset('assets/images/svg/calculation.svg') }}" alt="">
                         <span>Commission Calculation</span>
                     </a>
                 </li>
@@ -71,7 +71,7 @@
                 </li>
                 <li>
                     <a href="{{ route('blocks.index') }}" title="Add Block">
-                        <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
+                        <img src="{{ asset('assets/images/svg/block.svg') }}" alt="">
                         <span>Block</span>
                     </a>
                 </li>

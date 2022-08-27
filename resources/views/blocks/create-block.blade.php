@@ -93,7 +93,6 @@
 @push('scripts')
 <script>
     $(document).ready(function(){
-
         $('#plot-catgeory').change(function(){
             $('.plot-size-append-divs').remove();
             $('.plot-size-divs').show();
@@ -138,7 +137,14 @@
             $(this).parent().parent().parent().after(`
                 <div class="row plot-size-append-divs">
                     <div class="col-lg-4 col-md-6 plot-size-div">
-                        ${parentHtml}
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                ${parentHtml}
+                            </div>
+                            <button type="button" class="btn-none plot-size-minus">
+                                <img src="{{ asset('assets/images/svg/minus.svg') }}" alt="-" width="25" class="mt-2">
+                            </button>
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-6 plot-size-divs">
                         <label for="" class="theme-label">Plots</label>
@@ -148,6 +154,9 @@
                 </div>
             `);
         });
+    });
+    $(document).on('click', '.plot-size-minus', function() {
+        $(this).parent().parent().parent().remove();
     });
 </script>
 <script>
