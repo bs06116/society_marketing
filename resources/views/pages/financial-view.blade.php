@@ -11,24 +11,24 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="theme-label">Total Worth</label>
-                    <input type="number" name="total_worth" id="total_worth" class="theme-input" placeholder="Total worth">
+                    <input type="number" name="total_worth" value="{{$form->total_worth}}" id="total_worth" class="theme-input" placeholder="Total worth">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="theme-label">Down Payment</label>
-                    <input type="number" name="down_payment" class="theme-input" placeholder="Down payment">
+                    <input type="number" name="down_payment" value="{{$form->down_payment}}" class="theme-input" placeholder="Down payment">
                 </div>
             </div>
         <div class="row">
             <div class="col-6">
                 <div class="border_info border-0">
                     <h5 class="mb-2">Total Installments</h5>
-                    <p class="m-0 f-14"><b>12</b></p>
+                    <p class="m-0 f-14"><b>{{\App\Models\Installment::where('forms_id',$id)->count()}}</b></p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="border_info border-0">
                     <h5 class="mb-2">Total Payment</h5>
-                    <p class="m-0 f-14"><b>100000</b></p>
+                    <p class="m-0 f-14"><b>{{\App\Models\Installment::where('forms_id',$id)->sum('amount')}}</b></p>
                 </div>
             </div>
         </div>
@@ -56,32 +56,24 @@
         </div>
         <div id="append-wrapper"></div>
         <div class="d-flex justify-content-end pt-3">
-            <button class="theme-btn px-4">Add Installment</button>
+            <button class="theme-btn px-4">Add Installment
+                <span class="spinner-border spinner-border-sm spinner" style="display: none"></span>
+            </button>
         </div>
+        <input type="hidden" name="id" value="{{$id}}">
     </form>
 
         <div class="row">
+            @foreach($installemnts as $installment)
             <div class="col-sm-4">
                 <div class="border_info">
-                    <h5 class="mb-2">Insallment 1</h5>
-                    <p class="m-0"><b>6000</b></p>
-                    <p class="m-0">2/20/2020</p>
+                    <h5 class="mb-2">{{$installment->name}}</h5>
+                    <p class="m-0"><b>{{$installment->amount}}</b></p>
+                    <p class="m-0">{{$installment->installment_date}}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="border_info">
-                    <h5 class="mb-2">Insallment 2</h5>
-                    <p class="m-0"><b>6,300</b></p>
-                    <p class="m-0">2/20/2020</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="border_info">
-                    <h5 class="mb-2">Insallment 3</h5>
-                    <p class="m-0"><b>36,333</b></p>
-                    <p class="m-0">2/20/2020</p>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </div>
@@ -123,6 +115,7 @@
 
         },
         submitHandler: function(form) {
+            $(".spinner").show();
             event.preventDefault();
             $.ajaxSetup({
                 headers: {
@@ -134,6 +127,7 @@
                 type: "POST",
                 data: $(form).serialize(),
                 success: function(response) {
+                    $(".spinner").hide();
                     toastr.success(response.msg);
                     setTimeout(function(){ window.location = "{{route('forms.index')}}" }, 3000);
 

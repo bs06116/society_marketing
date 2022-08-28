@@ -39,7 +39,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::GET('profit-calculation', [HomeController::class, 'profit_calculation']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    // Route::GET('financial_view', function () {
+    //     return view('pages.financial-view');
+    // });
+    Route::GET('form/financial/{id}', [FormController::class, 'viewFinancial'])->name('financial.view');
     Route::POST('add-financial', [FormController::class, 'addFinancial'])->name('financial.add');
+    Route::POST('get-appliction', [FormController::class, 'getApplciaton'])->name('appliction.get');
     Route::resource('forms', FormController::class);
 
     // Route::resource('customers', CustomerController::class);
@@ -87,6 +92,3 @@ Route::get('/create-file', function () {
 //     return view('pages.create-block');
 // });
 
-Route::get('/financial_view', function () {
-    return view('pages.financial-view');
-});

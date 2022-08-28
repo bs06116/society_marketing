@@ -12,6 +12,8 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use Response;
+use Illuminate\Support\Facades\View;
+
 
 class FormController extends Controller
 {
@@ -191,24 +193,32 @@ class FormController extends Controller
             'down_payment' => 'required',
         ]);
         $dataInstallment = [];
+        $id = $request->id;
         $name = $request->name;
         $amount = $request->amount;
         $installment_date = $request->installment_date;
-        $form = Form::find(1);
+        $total_worth = $request->total_worth;
+        $down_payment = $request->down_payment;
+
+        $form = Form::find($id);
         if($form){
-            Installment::where('block_id',1)->delete();
+            // Installment::where('forms_id',$id)->delete();
             foreach($amount as $index=>$a){
-                $dataPlot[] = array('name' =>$name[$index],'amount'=>$amount[$index],
-                'installment_date'=>$installment_date[$index],'	forms_id'=>1);
+                if(!empty($amount[$index])){
+                    $dataInstallment[] = array('name' =>$name[$index],'amount'=>$amount[$index],
+                    'installment_date'=>$installment_date[$index],'forms_id'=>$id);
+                }
             }
-            Installment::insert($dataInstallment);
+            Form::where('id',$id)->update(array('total_worth'=>$total_worth,'down_payment'=>$down_payment));
+            if(count($dataInstallment)>0){
+                Installment::insert($dataInstallment);
+            }
         }
         return Response::json([
             'success' => true,
             'status'=> 400,
             'msg'=> "Finical has been save successfully",
         ]);
-
     }
 
     public function save_form(Request $request)
@@ -274,9 +284,32 @@ class FormController extends Controller
             'nominee_applicant_passport'=>$request->nominee_passport,
             'preference_of_plot'=>$request->preference_of_plot,
         ];
-
         Form::Create($form);
-
         return redirect('dashboard')->with(['success_msg'=> 'Form submitted successfully']);
+    }
+
+    public function getApplciaton(Request $request){
+        $block_id = $request->block_id;
+        $plot_num = $request->plot_num;
+        $result = Form::where('block_no',$block_id)->where('plot_no',$plot_num)->first();
+        if($result){
+            $html = \View::make('pages.__financial_view_popup',compact('result'));
+            return Response::json([
+                'success' => true,
+                'data'=> "$html" ,
+                'msg'=> "Record found",
+            ]);
+        }else{
+            return Response::json([
+                'success' => false,
+                'data'=> '',
+                'msg'=> "Record not found",
+            ]);
+        }
+    }
+    public function viewFinancial($id = null){
+        $installemnts = Installment::where('forms_id',$id)->get();
+        $form = Form::where('id',$id)->first();
+        return view('pages.financial-view',compact('id','installemnts','form'));
     }
 }

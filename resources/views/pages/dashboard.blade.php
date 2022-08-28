@@ -40,19 +40,26 @@
                     <div class="row flex-grow-1">
                         <div class="col-sm-6">
                             <label for="" class="theme-label">Block</label>
-                            <select name="" id="" class="theme-select">
+                            <select name="" id="block_id" class="theme-select">
                                 <option value="" disabled selected>Select Block</option>
-                                <option value="">Block 1</option>
-                                <option value="">Block 2</option>
-                                <option value="">Block 3</option>
+                                @php
+                                $blocks = \App\Models\Block::get();
+                                @endphp
+                                @foreach($blocks as $block)
+                                <option value="{{$block->id}}">{{$block->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-sm-6">
                             <label for="" class="theme-label">Plot Number</label>
-                            <input type="text" class="theme-input" placeholder="Plot number">
+                            <input type="text" id="plot_number" class="theme-input" placeholder="Plot number">
                         </div>
                     </div>
-                    <button class="theme-btn ms-3 mt-1" data-bs-toggle="modal" data-bs-target="#search-file-modal">Search</button>
+                    <button class="theme-btn ms-3 mt-1" onclick="getApplication()" >Search
+                        <span class="spinner-border spinner-border-sm spinner" style="display: none"></span>
+
+                    </button>
+                    {{-- data-bs-toggle="modal" data-bs-target="#search-file-modal" --}}
                 </div>
             </div>
         </div>
@@ -66,9 +73,9 @@
         <div class="modal-content">
             <button type="button" class="btn-close selection-cancel" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <div class="file-info-main">
+                <div class="file-info-main" id="append_data">
                     <div class="d-flex align-items-center mb-4 pb-2">
-                        <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar">
+                        {{-- <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar"> --}}
                         <div>
                             <h6 class="name m-0">John Doe</h6>
                             <p class="email m-0">johndoe@gmail.com</p>
@@ -109,3 +116,31 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+function getApplication() {
+          $(".spinner").show();
+          var block_id = $("#block_id").val();
+          var plot_number = $("#plot_number").val();
+            $.ajax({
+                url: "{{ route('appliction.get') }}",
+                type: "POST",
+                data: {
+                    block_id : block_id,
+                    plot_num : plot_number,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $(".spinner").hide();
+                    if (response.success == true) {
+                       //console.info(response.data.id);
+                       $("#append_data").html(response.data);
+                       $("#search-file-modal").modal('show');
+                    }else{
+                        toastr.error(response.msg);
+                    }
+                },
+            });
+     }
+</script>
+@endpush
