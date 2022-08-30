@@ -45,36 +45,49 @@
                 </button>
             </div>
             <ul class="menu">
+                @canany(['dashbaoard'])
                 <li>
                     <a href="{{ url('/dashboard') }}" <?php if(request()->is('dashboard')){ echo "class='active'";} ?> title="Dashboard">
                         <img src="{{ asset('assets/images/svg/dashboard.svg') }}" alt="">
                         <span>Dashboard</span>
                     </a>
                 </li>
+                @endcan
+                @canany(['dealer-dashbaoard'])
                 <li>
                     <a href="{{ url('/dashboard-dealer') }}" title="Dashboard">
                         <img src="{{ asset('assets/images/svg/dashboard.svg') }}" alt="">
                         <span>Dashboard (Dealer)</span>
                     </a>
                 </li>
+                @endcan
+                @canany(['commission-calculation'])
                 <li>
                     <a href="{{ url('/commission-calculation') }}" <?php if(request()->is('commission-calculation')){ echo "class='active'";} ?> title="Commission Calculation">
                         <img src="{{ asset('assets/images/svg/calculation.svg') }}" alt="">
                         <span>Commission Calculation</span>
                     </a>
                 </li>
+                @endcan
+
+                @canany(['plot'])
                 <li>
                     <a href="{{ url('/plots') }}" <?php if(request()->is('plots')){ echo "class='active'";} ?> title="Plots">
                         <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
                         <span>Plots</span>
                     </a>
                 </li>
+                @endcan
+
+                @canany(['block'])
                 <li>
                     <a href="{{ route('blocks.index') }}" title="Add Block">
                         <img src="{{ asset('assets/images/svg/block.svg') }}" alt="">
                         <span>Block</span>
                     </a>
                 </li>
+                @endcan
+
                 @canany(['user-view'])
                 <li>
                     <a href="{{ route('users.index') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
@@ -83,14 +96,7 @@
                     </a>
                 </li>
                 @endcan
-                @canany(['create-form'])
-                <li>
-                    <a href="{{ route('forms.create') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
-                        <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
-                        <span>Application Form</span>
-                    </a>
-                </li>
-                @endcan
+
 
             </ul>
         </aside>
