@@ -11,19 +11,19 @@
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Worth of Plots</h2>
-                <h1>0</h1>
+                <h1>{{\App\Models\Form::sum('total_price')}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Payment</h2>
-                <h1>0</h1>
+                <h1>{{\App\Models\Installment::sum('amount')}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Balance</h2>
-                <h1>0</h1>
+                <h1>{{\App\Models\Form::sum('total_price') - \App\Models\Installment::sum('amount')}}</h1>
             </div>
         </div>
     </div>

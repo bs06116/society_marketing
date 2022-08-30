@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="theme-label">Total Worth</label>
-                    <input type="number" name="total_worth" value="{{$form->total_worth}}" id="total_worth" class="theme-input" placeholder="Total worth">
+                    <input type="number" name="total_price" value="{{$form->total_price}}" id="total_worth" class="theme-input" placeholder="Total worth">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="theme-label">Down Payment</label>
@@ -130,7 +130,6 @@
                     $(".spinner").hide();
                     toastr.success(response.msg);
                     setTimeout(function(){ window.location = "{{route('forms.index')}}" }, 3000);
-
                 },
                 error: function(response) {
 

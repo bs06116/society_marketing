@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function() {
     // });
     Route::GET('form/financial/{id}', [FormController::class, 'viewFinancial'])->name('financial.view');
     Route::POST('add-financial', [FormController::class, 'addFinancial'])->name('financial.add');
+    Route::POST('add-commission', [FormController::class, 'addCommission'])->name('commission.add');
+
     Route::POST('get-appliction', [FormController::class, 'getApplciaton'])->name('appliction.get');
     Route::resource('forms', FormController::class);
 
@@ -53,6 +55,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::GET('get-plot-size/{block_id}', [BlockController::class, 'get_plot_size']);
     Route::GET('get-blocks/{category}', [BlockController::class, 'get_blocks']);
     Route::POST('save-form', [FormController::class, 'save_form']);
+    Route::GET('dashboard-dealer', [FormController::class, 'dealerDashbaord'])->name('dashboard-dealer');
+    Route::POST('check-application', [FormController::class, 'checkApplication'])->name('appliction.check');
+
+    // Route::get('/dashboard-dealer', function () {
+    //     return view('pages.dashboard-dealer');
+    // });
 
 });
 Auth::routes();
@@ -79,9 +87,7 @@ Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
 
-Route::get('/dashboard-dealer', function () {
-    return view('pages.dashboard-dealer');
-});
+
 
 Route::get('/create-file', function () {
     return view('pages.create-file');

@@ -8,18 +8,20 @@ use App\Models\Form;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Models\Installment;
+use App\Models\Commission;
+use App\Models\BookDealerPlot;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use Response;
 use Illuminate\Support\Facades\View;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class FormController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:create-form');
 
         // $this->middleware('permission:user-view');
         // $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
@@ -89,9 +91,8 @@ class FormController extends Controller
      */
     public function create()
     {
-
+        $this->middleware('permission:create-form');
         return view('pages.create-file');
-
     }
 
     /**
@@ -186,41 +187,6 @@ class FormController extends Controller
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
-    public function addFinancial(Request $request)
-    {
-        $this->validate($request, [
-            'total_worth' => 'required',
-            'down_payment' => 'required',
-        ]);
-        $dataInstallment = [];
-        $id = $request->id;
-        $name = $request->name;
-        $amount = $request->amount;
-        $installment_date = $request->installment_date;
-        $total_worth = $request->total_worth;
-        $down_payment = $request->down_payment;
-
-        $form = Form::find($id);
-        if($form){
-            // Installment::where('forms_id',$id)->delete();
-            foreach($amount as $index=>$a){
-                if(!empty($amount[$index])){
-                    $dataInstallment[] = array('name' =>$name[$index],'amount'=>$amount[$index],
-                    'installment_date'=>$installment_date[$index],'forms_id'=>$id);
-                }
-            }
-            Form::where('id',$id)->update(array('total_worth'=>$total_worth,'down_payment'=>$down_payment));
-            if(count($dataInstallment)>0){
-                Installment::insert($dataInstallment);
-            }
-        }
-        return Response::json([
-            'success' => true,
-            'status'=> 400,
-            'msg'=> "Finical has been save successfully",
-        ]);
-    }
-
     public function save_form(Request $request)
     {
         $this->validate($request, [
@@ -288,6 +254,50 @@ class FormController extends Controller
         return redirect('dashboard')->with(['success_msg'=> 'Form submitted successfully']);
     }
 
+    public function addFinancial(Request $request)
+    {
+        $this->validate($request, [
+            'total_price' => 'required',
+            'down_payment' => 'required',
+        ]);
+        $dataInstallment = [];
+        $id = $request->id;
+        $name = $request->name;
+        $amount = $request->amount;
+        $installment_date = $request->installment_date;
+        $total_price = $request->total_price;
+        $down_payment = $request->down_payment;
+        $form = Form::find($id);
+        if($form){
+            // Installment::where('forms_id',$id)->delete();
+            foreach($amount as $index=>$a){
+                if(!empty($amount[$index])){
+                    $dataInstallment[] = array('name' =>$name[$index],'amount'=>$amount[$index],
+                    'installment_date'=>$installment_date[$index],'forms_id'=>$id);
+                }
+            }
+            Form::where('id',$id)->update(array('total_price'=>$total_price,'down_payment'=>$down_payment));
+            if(count($dataInstallment)>0){
+                Installment::insert($dataInstallment);
+            }
+        }
+        return Response::json([
+            'success' => true,
+            'status'=> 400,
+            'msg'=> "Finical has been save successfully",
+        ]);
+    }
+    public function addCommission(Request $request)
+    {
+        $this->validate($request, [
+            'total_commission' => 'required',
+        ]);
+        $total_commission = $request->total_commission;
+        $data = array('total_commission' =>$total_commission,'created_at'=>Carbon::now());
+        Commission::insert($data);
+        return redirect('commission-calculation')->with(['success_msg'=> 'Commission updated successfully']);
+
+    }
     public function getApplciaton(Request $request){
         $block_id = $request->block_id;
         $plot_num = $request->plot_num;
@@ -312,4 +322,44 @@ class FormController extends Controller
         $form = Form::where('id',$id)->first();
         return view('pages.financial-view',compact('id','installemnts','form'));
     }
+    public function dealerDashbaord(){
+        return view('pages.dashboard-dealer');
+
+    }
+    public function checkApplication(Request $request){
+        $plot_number = $request->plot_number;
+        $check_book_plot = $request->check_book_plot;
+        $result = Form::where('plot_no',$plot_number)->first();
+        if(!$result){
+            return Response::json([
+                'success' => true,
+                'data' => false,
+                'msg'=> "This plot does not exist",
+            ]);
+        }
+        $checkBookPlot = BookDealerPlot::where('form_id',$result->id)->first();
+        if($check_book_plot == 'true' && !$checkBookPlot){
+            $data = array('form_id'=>$result->id,'user_id'=>Auth::id(),'created_at'=>Carbon::now());
+            BookDealerPlot::insert($data);
+            return Response::json([
+                'success' => true,
+                'data' => 2,
+                'msg'=> "Plot has book this dealer",
+            ]);
+        }
+        if($checkBookPlot){
+            return Response::json([
+                'success' => true,
+                'data' => false,
+                'msg'=> "This plot has already been sold",
+            ]);
+        }else{
+            return Response::json([
+                'success' => false,
+                'data' => true,
+                'msg'=> "This Plot is Available",
+            ]);
+        }
+    }
+
 }
