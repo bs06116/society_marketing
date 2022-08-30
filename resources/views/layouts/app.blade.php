@@ -78,6 +78,13 @@
                     </a>
                 </li>
                 @endcan
+                
+                <li>
+                    <a href="{{ url('/booked-plots') }}" <?php if(request()->is('booked-plots')){ echo "class='active'";} ?> title="Booked Plots">
+                        <img src="{{ asset('assets/images/svg/area.svg') }}" alt="">
+                        <span>Booked Plots</span>
+                    </a>
+                </li>
 
                 @canany(['block'])
                 <li>
@@ -96,7 +103,6 @@
                     </a>
                 </li>
                 @endcan
-
 
             </ul>
         </aside>

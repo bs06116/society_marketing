@@ -58,7 +58,7 @@ class BlockController extends Controller
         $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
         foreach ($data as $d) {
             $d->category = $d->plot_catergory;
-            $d->action = '<a href="'.route('blocks.edit',$d->id).'"><button class="theme-btn table-btn '.$classEdit.'">Edit</button></a>';
+            $d->action = '<a href="'.route('blocks.edit',$d->id).'"><button class="btn-none '.$classEdit.'"><img src="'.asset("assets/images/svg/edit.svg").'" alt="" width="15"></button></a>';
         }
         return [
             "draw" => request('draw'),

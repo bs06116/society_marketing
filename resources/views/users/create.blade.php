@@ -34,7 +34,6 @@
                 <div class="col-md-6">
                     {{ Form::label('phone_number', 'Contact Number', ['class' => 'theme-label required']) }}
                     {{ Form::text('phone_number', null, ['class' => 'theme-input']) }}
-
                 </div>
                 <div class="col-md-6">
                     <label for="" class="theme-label">Role</label>
@@ -49,7 +48,6 @@
             <div class="d-flex justify-content-end">
                 <button class="theme-btn ms-2 cancel" style="width: 100px;">Cancel</button>
                 <button class="theme-btn ms-2" type="submit" style="width: 100px;">Save</button>
-
             </div>
             {!! Form::close() !!}
         </div>

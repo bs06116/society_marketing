@@ -62,7 +62,7 @@ class UserController extends Controller
         $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
         foreach ($data as $d) {
             $d->role = $d->roles->pluck('name')->implode(', ');
-            $d->action = '<a href="'.route('users.edit',$d->id).'"><button class="theme-btn table-btn '.$classEdit.'">Edit</button></a>';
+            $d->action = '<a href="'.route('users.edit',$d->id).'"><button class="btn-none '.$classEdit.'"><img src="'.asset("assets/images/svg/edit.svg").'" alt="" width="15"></button></a>';
         }
         return [
             "draw" => request('draw'),

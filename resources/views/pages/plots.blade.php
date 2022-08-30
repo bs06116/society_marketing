@@ -3,27 +3,27 @@
 <div class="main-padding">
     <div class="d-flex justify-content-between align-items-start mb-3">
         <h1 class="heading">Plots</h1>
-        <a href="{{ url('/booked-plots') }}">
+        {{-- <a href="{{ url('/booked-plots') }}">
             <button class="theme-btn">Booked Plots</button>
-        </a>
+        </a> --}}
     </div>
     <div class="row mb-4">
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total</h2>
-                <h1>{{\App\Models\Form::count()}}</h1>
+                <h1 class="format-commas">{{\App\Models\Form::count()}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Purchased</h2>
-                <h1>{{\App\Models\Form::join('intallment', 'intallment.forms_id', '=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Available</h2>
-                <h1>{{\App\Models\Form::join('intallment', 'intallment.forms_id', '!=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '!=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
             </h1>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="top-card">
                         <h2>Total</h2>
-                        <h1>{{$cp->total_plot}}</h1>
+                        <h1 class="format-commas">{{$cp->total_plot}}</h1>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -58,13 +58,13 @@
                         $totalPurchased =\App\Models\BlockPlot::join('forms', 'forms.plot_size', '=', 'block_plots.id')->where('forms.plot_size',$cp->id)->where('block_plots.block_category','commercial')->count();
                      @endphp
                         <h2>Purchased</h2>
-                        <h1>{{$totalPurchased}}</h1>
+                        <h1 class="format-commas">{{$totalPurchased}}</h1>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="top-card">
                         <h2>Available</h2>
-                        <h1>{{$cp->total_plot - $totalPurchased}}</h1>
+                        <h1 class="format-commas">{{$cp->total_plot - $totalPurchased}}</h1>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="top-card">
                         <h2>Total</h2>
-                        <h1>{{$rp->total_plot}}</h1>
+                        <h1 class="format-commas">{{$rp->total_plot}}</h1>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -89,13 +89,13 @@
                         $totalPurchasedResdient =\App\Models\BlockPlot::join('forms', 'forms.plot_size', '=', 'block_plots.id')->where('forms.plot_size',$rp->id)->where('block_plots.block_category','residential')->count();
                      @endphp
                         <h2>Purchased</h2>
-                        <h1>{{$totalPurchasedResdient}}</h1>
+                        <h1 class="format-commas">{{$totalPurchasedResdient}}</h1>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="top-card">
                         <h2>Available</h2>
-                        <h1>{{$rp->total_plot - $totalPurchasedResdient}}</h1>
+                        <h1 class="format-commas">{{$rp->total_plot - $totalPurchasedResdient}}</h1>
                     </div>
                 </div>
             </div>

@@ -13,19 +13,19 @@
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Worth of Plots</h2>
-                <h1>{{\App\Models\Form::sum('total_price')}}</h1>
+                <h1 class="format-commas">{{\App\Models\Form::sum('total_price')}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Payment</h2>
-                <h1>{{\App\Models\Installment::sum('amount')}}</h1>
+                <h1 class="format-commas">{{\App\Models\Installment::sum('amount')}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Balance</h2>
-                <h1>{{\App\Models\Form::sum('total_price') - \App\Models\Installment::sum('amount')}}</h1>
+                <h1 class="format-commas">{{\App\Models\Form::sum('total_price') - \App\Models\Installment::sum('amount')}}</h1>
             </div>
         </div>
     </div>
@@ -81,9 +81,10 @@
             <div class="modal-body">
                 <div class="file-info-main" id="append_data">
                     <div class="d-flex align-items-center mb-4 pb-2">
-                        {{-- <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar"> --}}
+                        <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar">
                         <div>
-                            <h6 class="name m-0">John Doe</h6>
+                            <h6 class="name mb-1">John Doe</h6>
+                            <p class="email m-0">00000-0000000-0</p>
                             <p class="email m-0">johndoe@gmail.com</p>
                         </div>
                     </div>

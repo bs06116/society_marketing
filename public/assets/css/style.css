@@ -641,7 +641,7 @@ select[name="myTable_length"] {
 .file-info-main {
     padding: 20px 30px;
 }
-.file-info-main .avatar {
+.file-info-main .avatar, .avatar_ {
     width: 83px;
     height: 87px;
     box-shadow: 0px 2px 6px #00000029;

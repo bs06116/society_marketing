@@ -12,4 +12,10 @@ $(document).ready(function(){
     $('.theme-aside .logo').toggleClass('d-none');
     $('.main').toggleClass('active');
   });
+
+  // format numbers with commas
+  $('.format-commas').each(function(index, element) {
+    let number = $(element).text();
+    $(element).html(Number(number).toLocaleString('en'));
+  });
 });

@@ -11,19 +11,19 @@
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Worth</h2>
-                <h1>{{\App\Models\Form::sum('total_price')}}</h1>
+                <h1 class="format-commas">{{\App\Models\Form::sum('total_price')}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Commission <span class="f-13">(8%)</span></h2>
-                <h1>{{(\App\Models\Form::sum('total_price')*8)/100}}</h1>
+                <h1 class="format-commas">{{(\App\Models\Form::sum('total_price')*8)/100}}</h1>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Received Till Date</h2>
-                <h1>{{\App\Models\Commission::sum('total_commission')}}</h1>
+                <h1 class="format-commas">{{\App\Models\Commission::sum('total_commission')}}</h1>
             </div>
         </div>
     </div>

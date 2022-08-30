@@ -5,7 +5,11 @@
 
 <div class="main-padding">
     <div class="table-card">
-        <h1 class="heading text-center">Application Form</h1>
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid" width="100">
+            <h1 class="heading text-center">Application Form</h1>
+            <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar_">
+        </div>
         <div class="row mb-2">
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">App No</label>
