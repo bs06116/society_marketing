@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    {{-- <tr>
                         <td>----</td>
                         <td>----</td>
                         <td>----</td>
@@ -29,7 +29,7 @@
                                 </button>
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>
@@ -38,4 +38,67 @@
 @endsection
 
 @push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#myTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('book.plot') }}",
+                    data: function(d) {
+                        //   d.approved = $('#approved').val(),
+                        //  d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+
+                    {
+                        data: 'block',
+                        name: 'block'
+                    },
+                    {
+                        data: 'plot_number',
+                        name: 'plot_number'
+                    },
+                    {
+                        data: 'action',
+                        name: 'actions'
+                    }
+                ]
+            });
+
+            //   $('#approved').change(function(){
+            //       table.draw();
+            //   });
+
+        });
+    </script>
+    <script>
+        $('.data-table tbody').on('click', '.delete', function(e) {
+                e.preventDefault();
+                let that = jQuery(this);
+                jQuery.confirm({
+                    icon: 'fas fa-wind-warning',
+                    closeIcon: true,
+                    title: 'Are you sure!',
+                    content: 'You can not undo this action.!',
+                    type: 'red',
+                    typeAnimated: true,
+                    buttons: {
+                        confirm: function() {
+                            that.parent('form').submit();
+                            //$.alert('Confirmed!');
+                        },
+                        cancel: function() {
+                            //$.alert('Canceled!');
+                        }
+                    }
+                });
+
+        });
+    </script>
 @endpush

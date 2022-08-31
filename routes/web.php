@@ -51,13 +51,19 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Route::resource('customers', CustomerController::class);
     Route::GET('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
+    Route::GET('booked-plots', [BlockController::class,'bookPlot'])->name('book.plot');
+    Route::GET('delete-booked-plots/{id}', [BlockController::class,'deleteBookPlot'])->name('delete-booked-plots');
+
+
     Route::resource('blocks', BlockController::class);
     Route::GET('get-plot-size/{block_id}', [BlockController::class, 'get_plot_size']);
     Route::GET('get-blocks/{category}', [BlockController::class, 'get_blocks']);
     Route::POST('save-form', [FormController::class, 'save_form']);
     Route::GET('dashboard-dealer', [FormController::class, 'dealerDashbaord'])->name('dashboard-dealer');
     Route::POST('check-application', [FormController::class, 'checkApplication'])->name('appliction.check');
-
+    // Route::get('/booked-plots', function () {
+    //     return view('pages.booked-plots');
+    // });
     // Route::get('/dashboard-dealer', function () {
     //     return view('pages.dashboard-dealer');
     // });
@@ -79,9 +85,7 @@ Route::get('/plots', function () {
     return view('pages.plots');
 });
 
-Route::get('/booked-plots', function () {
-    return view('pages.booked-plots');
-});
+
 
 Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');

@@ -190,13 +190,13 @@ class FormController extends Controller
     public function save_form(Request $request)
     {
         $this->validate($request, [
-            'app_no' => 'required',
-            'reg_no' => 'required',
-            'form_no' => 'required',
+            'app_no' => 'required|unique:forms,app_no',
+            'reg_no' => 'required|unique:forms,reg_no',
+            'form_no' => 'required|unique:forms,form_no',
             'type' => 'required',
             'block' => 'required',
             'plot_size' => 'required',
-            'plot_no' => 'required',
+            'plot_no' => 'required|unique:forms,plot_no',
             'street_no' => 'required',
             'location_type' => 'required',
             'preference_of_plot' => 'required',
@@ -329,17 +329,19 @@ class FormController extends Controller
     public function checkApplication(Request $request){
         $plot_number = $request->plot_number;
         $check_book_plot = $request->check_book_plot;
+        $block_id = $request->block_id;
         $result = Form::where('plot_no',$plot_number)->first();
-        if(!$result){
+        $checkBookPlot = BookDealerPlot::where('plot_number',$plot_number)->first();
+        if($result || $checkBookPlot){
             return Response::json([
                 'success' => true,
                 'data' => false,
-                'msg'=> "This plot does not exist",
+                'msg'=> "This plot has already been sold",
             ]);
         }
-        $checkBookPlot = BookDealerPlot::where('form_id',$result->id)->first();
-        if($check_book_plot == 'true' && !$checkBookPlot){
-            $data = array('form_id'=>$result->id,'user_id'=>Auth::id(),'created_at'=>Carbon::now());
+        $checkBookPlot = BookDealerPlot::where('plot_number',$plot_number)->first();
+        if($check_book_plot == 'true' && (!$checkBookPlot || $result) ){
+            $data = array('block_number'=>$block_id,'plot_number'=>$plot_number,'user_id'=>Auth::id(),'created_at'=>Carbon::now());
             BookDealerPlot::insert($data);
             return Response::json([
                 'success' => true,
@@ -347,19 +349,24 @@ class FormController extends Controller
                 'msg'=> "Plot has book this dealer",
             ]);
         }
-        if($checkBookPlot){
-            return Response::json([
-                'success' => true,
-                'data' => false,
-                'msg'=> "This plot has already been sold",
-            ]);
-        }else{
-            return Response::json([
+             return Response::json([
                 'success' => false,
                 'data' => true,
                 'msg'=> "This Plot is Available",
             ]);
-        }
+        // if($checkBookPlot){
+        //     return Response::json([
+        //         'success' => true,
+        //         'data' => false,
+        //         'msg'=> "This plot has already been sold",
+        //     ]);
+        // }else{
+        //     return Response::json([
+        //         'success' => false,
+        //         'data' => true,
+        //         'msg'=> "This Plot is Available",
+        //     ]);
+        // }
     }
 
 }

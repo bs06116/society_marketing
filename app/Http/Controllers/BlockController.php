@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Block;
 use App\Models\BlockPlot;
+use App\Models\BookDealerPlot;
+
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -16,8 +18,8 @@ class BlockController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:user-view');
-        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+        // $this->middleware('permission:user-view');
+        // $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
 
     }
     /**
@@ -58,8 +60,7 @@ class BlockController extends Controller
         $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
         foreach ($data as $d) {
             $d->category = $d->plot_catergory;
-            $d->action = '<a href="'.route('blocks.edit',$d->id).'"><button class="btn-none '.$classEdit.'"><img src="'.asset("assets/images/svg/edit.svg").'" alt="" width="15"></button></a>';
-        }
+            $d->action = '<a href="'.route('blocks.edit',$d->id).'"><button class="btn-none '.$classEdit.'"><img src="'.asset("assets/images/svg/edit.svg").'" alt="" width="15"></button></a>';        }
         return [
             "draw" => request('draw'),
             "recordsTotal" => $recordsTotal,
@@ -207,6 +208,63 @@ class BlockController extends Controller
     public function get_blocks($category)
     {
         return Block::where(['plot_catergory'=> $category])->get();
+    }
+
+    public function bookPlot(Request $request)
+    {
+        if ($request->ajax()) {
+        if(!auth()->user()->can("user-delete")){
+            $classDelete = 'd-none';
+        }else{
+            $classDelete = '';
+        }
+        if(!auth()->user()->can("user-edit")){
+            $classEdit = 'd-none';
+        }else{
+            $classEdit = '';
+        }
+        $_order = request('order');
+        $_columns = request('columns');
+        $order_by = $_columns[$_order[0]['column']]['name'];
+        $order_dir = $_order[0]['dir'];
+        $search = request('search');
+        $skip = request('start');
+        $take = request('length');
+        $search = request('search');
+        $query = BookDealerPlot::select('users.name','book_dealer_plot.*')->join('users','users.id','=','book_dealer_plot.user_id');
+        $query->orderBy('book_dealer_plot.id', 'DESC')->get();
+        $recordsTotal = $query->count();
+        if (isset($search['value'])) {
+            $query->where(function ($q) use ($search) {
+                $q->whereRaw("name LIKE '%" . $search['value'] . "%' ");
+            });
+        }
+        $recordsFiltered = $query->count();
+        $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
+        foreach ($data as $d) {
+            $d->name = $d->name;
+            $d->block = $d->block_number;
+            $d->plot_number = $d->plot_number;
+            $d->action = '<a href="'.route('delete-booked-plots',$d->id).'"><button class="btn-none">
+            <img src="'.asset("assets/images/svg/delete.svg").'"  width="15">
+        </button></a>';
+        }
+        return [
+            "draw" => request('draw'),
+            "recordsTotal" => $recordsTotal,
+            'recordsFiltered' => $recordsFiltered,
+            "data" => $data,
+        ];
+    }
+        return view('pages.booked-plots');
+
+    }
+
+    public function deleteBookPlot($id)
+    {
+        BookDealerPlot::find($id)->delete();
+        return redirect()->route('booked-plots')
+                        ->with('success','Book Plot deleted successfully');
     }
 
 
