@@ -49,7 +49,7 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="commercial-tab" role="tabpanel" aria-labelledby="commercial-tab" tabindex="0">
            @php
-              $commercialPlot =  \App\Models\BlockPlot::where('block_category','commercial')->get();
+              $commercialPlot =  \App\Models\BlockPlot::where('block_category','commercial')->groupBy('plot_size')->selectRaw('sum(total_plot) as total_plot,plot_size,id')->get();
            @endphp
 
             @foreach($commercialPlot as $cp)
@@ -84,7 +84,7 @@
             @endforeach
         </div>
         @php
-        $residentialPlot =  \App\Models\BlockPlot::where('block_category','residential')->get();
+        $residentialPlot =  \App\Models\BlockPlot::where('block_category','residential')->groupBy('plot_size')->selectRaw('sum(total_plot) as total_plot,plot_size,id')->get();
      @endphp
         <div class="tab-pane fade" id="residential-tab" role="tabpanel" aria-labelledby="residential-tab" tabindex="0">
             @foreach($residentialPlot as $rp)
