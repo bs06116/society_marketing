@@ -18,4 +18,23 @@ $(document).ready(function(){
     let number = $(element).text();
     $(element).html(Number(number).toLocaleString('en'));
   });
+
+  // format cnic input
+  $('.cnic').inputmask("99999-9999999-9");
+});
+  // format numbers in input with commas
+$(document).on('keyup', '.format-commas-input', function() {
+  var x = $(this).val();
+  $(this).val(x.toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+});
+$(document).on('change', '.imgInp', function() {
+  const img = $(this).parent().find('img');
+  const file = this.files[0];
+  if (file) {
+    let reader = new FileReader();
+    reader.onload = function(event){
+      $(img).attr('src', event.target.result);
+    }
+    reader.readAsDataURL(file);
+  }
 });

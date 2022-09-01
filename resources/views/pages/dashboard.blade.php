@@ -13,19 +13,28 @@
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Worth of Plots</h2>
-                <h1 class="format-commas">{{\App\Models\Form::sum('total_price')}}</h1>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/plot-db-icon.svg') }}" alt="">
+                    <h1 class="format-commas">{{\App\Models\Form::sum('total_price')}}</h1>
+                </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Payment</h2>
-                <h1 class="format-commas">{{\App\Models\Installment::sum('amount')}}</h1>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/total-payment.svg') }}" alt="">
+                    <h1 class="format-commas">{{\App\Models\Installment::sum('amount')}}</h1>
+                </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total Balance</h2>
-                <h1 class="format-commas">{{\App\Models\Form::sum('total_price') - \App\Models\Installment::sum('amount')}}</h1>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/balance.svg') }}" alt="">
+                    <h1 class="format-commas">{{\App\Models\Form::sum('total_price') - \App\Models\Installment::sum('amount')}}</h1>
+                </div>
             </div>
         </div>
     </div>

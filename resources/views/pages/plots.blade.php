@@ -11,19 +11,28 @@
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total</h2>
-                <h1 class="format-commas">{{\App\Models\Form::count()}}</h1>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/total.svg') }}" alt="">
+                    <h1 class="format-commas">{{\App\Models\Form::count()}}</h1>
+                </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Purchased</h2>
-                <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/not-available.svg') }}" alt="">
+                    <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Available</h2>
-                <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '!=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/available.svg') }}" alt="">
+                    <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '!=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                </div>
             </h1>
             </div>
         </div>
@@ -45,26 +54,30 @@
 
             @foreach($commercialPlot as $cp)
             <h2 class="plot-size-heading">{{$cp->plot_size}}</h2>
-            <div class="row mb-3">
-                <div class="col-lg-4 col-md-6">
-                    <div class="top-card">
-                        <h2>Total</h2>
-                        <h1 class="format-commas">{{$cp->total_plot}}</h1>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="top-card">
-                        @php
-                        $totalPurchased =\App\Models\BlockPlot::join('forms', 'forms.plot_size', '=', 'block_plots.id')->where('forms.plot_size',$cp->id)->where('block_plots.block_category','commercial')->count();
-                     @endphp
-                        <h2>Purchased</h2>
-                        <h1 class="format-commas">{{$totalPurchased}}</h1>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="top-card">
-                        <h2>Available</h2>
-                        <h1 class="format-commas">{{$cp->total_plot - $totalPurchased}}</h1>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="top-card">
+                                <h2>Total</h2>
+                                <h1 class="format-commas">{{$cp->total_plot}}</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="top-card">
+                                @php
+                                $totalPurchased =\App\Models\BlockPlot::join('forms', 'forms.plot_size', '=', 'block_plots.id')->where('forms.plot_size',$cp->id)->where('block_plots.block_category','commercial')->count();
+                             @endphp
+                                <h2>Purchased</h2>
+                                <h1 class="format-commas">{{$totalPurchased}}</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="top-card">
+                                <h2>Available</h2>
+                                <h1 class="format-commas">{{$cp->total_plot - $totalPurchased}}</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,26 +89,30 @@
         <div class="tab-pane fade" id="residential-tab" role="tabpanel" aria-labelledby="residential-tab" tabindex="0">
             @foreach($residentialPlot as $rp)
             <h2 class="plot-size-heading">{{$rp->plot_size}}</h2>
-            <div class="row mb-3">
-                <div class="col-lg-4 col-md-6">
-                    <div class="top-card">
-                        <h2>Total</h2>
-                        <h1 class="format-commas">{{$rp->total_plot}}</h1>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="top-card">
-                        @php
-                        $totalPurchasedResdient =\App\Models\BlockPlot::join('forms', 'forms.plot_size', '=', 'block_plots.id')->where('forms.plot_size',$rp->id)->where('block_plots.block_category','residential')->count();
-                     @endphp
-                        <h2>Purchased</h2>
-                        <h1 class="format-commas">{{$totalPurchasedResdient}}</h1>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="top-card">
-                        <h2>Available</h2>
-                        <h1 class="format-commas">{{$rp->total_plot - $totalPurchasedResdient}}</h1>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="top-card">
+                                <h2>Total</h2>
+                                <h1 class="format-commas">{{$rp->total_plot}}</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="top-card">
+                                @php
+                                $totalPurchasedResdient =\App\Models\BlockPlot::join('forms', 'forms.plot_size', '=', 'block_plots.id')->where('forms.plot_size',$rp->id)->where('block_plots.block_category','residential')->count();
+                             @endphp
+                                <h2>Purchased</h2>
+                                <h1 class="format-commas">{{$totalPurchasedResdient}}</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="top-card">
+                                <h2>Available</h2>
+                                <h1 class="format-commas">{{$rp->total_plot - $totalPurchasedResdient}}</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

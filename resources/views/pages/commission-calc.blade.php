@@ -35,7 +35,7 @@
                     <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <label for="" class="theme-label f-15">Received Commission</label>
-                        <input type="number" name="total_commission" class="theme-input" placeholder="Received commission">
+                        <input type="text" name="total_commission" class="theme-input format-commas-input" placeholder="Received commission">
                     </div>
                     <div class="d-flex justify-content-end mt-1 ms-3">
                         <button class="theme-btn mt-1">Submit</button>

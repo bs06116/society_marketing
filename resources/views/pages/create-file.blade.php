@@ -8,7 +8,10 @@
         <div class="d-flex align-items-center justify-content-between mb-4">
             <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid" width="100">
             <h1 class="heading text-center">Application Form</h1>
-            <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar_">
+            <div class="position-relative">
+                <img src="{{ asset('assets/images/avatar3.png') }}" alt="" class="avatar_">
+                <input type="file" name="" id="" class="imgInp position-absolute inset-0 w-100 h-100 opacity-0" accept="image/*">
+            </div>
         </div>
         <div class="row mb-2">
             <div class="col-lg-4 col-md-6">
@@ -169,7 +172,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <label for="" class="theme-label">Extra Land Cost</label>
-                    <input type="number" name="extra_land_cost" value="{{old('extra_land_cost')}}" class="theme-input" placeholder="Extra land cost">
+                    <input type="text" name="extra_land_cost" value="{{old('extra_land_cost')}}" class="theme-input format-commas-input" placeholder="Extra land cost">
                     @if($errors->has('extra_land_cost')) 
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('extra_land_cost') }}</strong>
@@ -187,7 +190,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <label for="" class="theme-label">Total Price</label>
-                    <input type="number" value="{{old('total_price')}}" name="total_price" class="theme-input" placeholder="Total Price">
+                    <input type="text" value="{{old('total_price')}}" name="total_price" class="theme-input format-commas-input" placeholder="Total Price">
                     @if($errors->has('total_price')) 
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('total_price') }}</strong>
@@ -219,7 +222,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="" class="theme-label">CNIC No</label>
-                <input type="number" value="{{old('cnic_no')}}" name="cnic_no" class="theme-input" placeholder="CNIC No">
+                <input type="text" value="{{old('cnic_no')}}" name="cnic_no" class="theme-input cnic" placeholder="XXXXX-XXXXXXX-X">
                 @if($errors->has('cnic_no')) 
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('cnic_no') }}</strong>
@@ -304,7 +307,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="" class="theme-label">CNIC No</label>
-                <input type="number" value="{{old('nominee_cnic')}}" name="nominee_cnic" class="theme-input" placeholder="CNIC No">
+                <input type="text" value="{{old('nominee_cnic')}}" name="nominee_cnic" class="theme-input cnic" placeholder="XXXXX-XXXXXXX-X">
                 @if($errors->has('nominee_cnic')) 
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('nominee_cnic') }}</strong>

@@ -18,19 +18,18 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datatable.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('assets/css/jquery-confirm.min.css')}}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!-- Scripts -->
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ asset('assets/js/core.js') }}"></script>
     <script src="{{asset('assets/js/validator/jquery.validate.js')}}"></script>
     <script src="{{asset('assets/js/validator/additional.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('assets/css/jquery-confirm.min.css')}}" type="text/css">
-    <link rel="stylesheet" type="text/css"
-     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+    <script src="{{ asset('assets/js/core.js') }}"></script>
  </head>
 <body>
     <div id="app">
@@ -55,9 +54,9 @@
                 @endcan
                 @canany(['dealer-dashbaoard'])
                 <li>
-                    <a href="{{ url('/dashboard-dealer') }}" title="Dashboard">
+                    <a href="{{ url('/dashboard-dealer') }}" <?php if(request()->is('dashboard-dealer')){ echo "class='active'";} ?> title="Dashboard">
                         <img src="{{ asset('assets/images/svg/dashboard.svg') }}" alt="">
-                        <span>Dashboard (Dealer)</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 @endcan
