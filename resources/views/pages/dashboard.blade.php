@@ -80,7 +80,7 @@
             <button type="button" class="btn-close selection-cancel" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
                 <div class="file-info-main" id="append_data">
-                    <div class="d-flex align-items-center mb-4 pb-2">
+                    {{-- <div class="d-flex align-items-center mb-4 pb-2">
                         <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar">
                         <div>
                             <h6 class="name mb-1">John Doe</h6>
@@ -116,7 +116,7 @@
                         <a href="{{ url('financial_view') }}">
                             <button class="theme-btn">Financial View</button>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
