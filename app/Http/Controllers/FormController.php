@@ -9,6 +9,8 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Models\Installment;
 use App\Models\Commission;
+use App\Models\Block;
+use App\Models\BlockPlot;
 use App\Models\BookDealerPlot;
 use DB;
 use Hash;
@@ -189,14 +191,15 @@ class FormController extends Controller
     }
     public function save_form(Request $request)
     {
+        // return $request->image;
         $this->validate($request, [
-            'app_no' => 'required|unique:forms,app_no',
-            'reg_no' => 'required|unique:forms,reg_no',
-            'form_no' => 'required|unique:forms,form_no',
+            'app_no' => 'required|unique:forms,app_no,'.$request->form_id,
+            'reg_no' => 'required|unique:forms,reg_no,'.$request->form_id,
+            'form_no' => 'required|unique:forms,form_no,'.$request->form_id,
             'type' => 'required',
             'block' => 'required',
             'plot_size' => 'required',
-            'plot_no' => 'required|unique:forms,plot_no',
+            'plot_no' => 'required|unique:forms,plot_no,'.$request->form_id,
             'street_no' => 'required',
             'location_type' => 'required',
             'preference_of_plot' => 'required',
@@ -250,8 +253,23 @@ class FormController extends Controller
             'nominee_applicant_passport'=>$request->nominee_passport,
             'preference_of_plot'=>$request->preference_of_plot,
         ];
-        Form::Create($form);
-        return redirect('dashboard')->with(['success_msg'=> 'Form submitted successfully']);
+
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename = time().'.'.$file->extension();
+           $file->move(public_path("images"), $filename);
+            $path = '/images/' . $filename;
+           $form['image']  = $path;
+        }
+
+        if(empty($request->form_id)){
+            Form::Create($form);
+            $message = "Form submitted successfully";
+        }else{
+            Form::where(['id'=> $request->form_id])->update($form);
+            $message = "Form Updated successfully";
+        }
+        return redirect('dashboard')->with(['success_msg'=> $message]);
     }
 
     public function addFinancial(Request $request)
@@ -367,6 +385,17 @@ class FormController extends Controller
         //         'msg'=> "This Plot is Available",
         //     ]);
         // }
+    }
+
+    public function edit_file($form_id)
+    {
+        $form = Form::where(['id'=> $form_id])->first();
+        if(empty($form)){
+            return redirect()->back()->with(['error_msg'=>'Invalid Form Selected']);
+        }
+        $blocks =Block::where(['plot_catergory'=> $form->plot_type])->get();
+        $plot_sizes = BlockPlot::where(['block_id'=> $form->block_no])->get();
+        return view('pages.create-file', compact('form', 'blocks', 'plot_sizes'));
     }
 
 }

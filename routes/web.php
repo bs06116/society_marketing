@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::POST('add-commission', [FormController::class, 'addCommission'])->name('commission.add');
 
     Route::POST('get-appliction', [FormController::class, 'getApplciaton'])->name('appliction.get');
+    Route::GET('edit-file/{form_id}', [FormController::class, 'edit_file']);
     Route::resource('forms', FormController::class);
 
     // Route::resource('customers', CustomerController::class);

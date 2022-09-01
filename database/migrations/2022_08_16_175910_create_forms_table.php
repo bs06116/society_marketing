@@ -43,6 +43,7 @@ class CreateFormsTable extends Migration
             $table->string('nominee_applicant_cnic')->nullable();
             $table->string('nominee_applicant_passport')->nullable();
             $table->string('preference_of_plot')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
