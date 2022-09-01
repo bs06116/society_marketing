@@ -55,7 +55,7 @@
             @foreach($commercialPlot as $cp)
             <h2 class="plot-size-heading">{{$cp->plot_size}}</h2>
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="top-card">
@@ -90,7 +90,7 @@
             @foreach($residentialPlot as $rp)
             <h2 class="plot-size-heading">{{$rp->plot_size}}</h2>
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="top-card">

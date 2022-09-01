@@ -21,7 +21,7 @@
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
-                <h2>Total Payment</h2>
+                <h2>Total Payment Received</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/total-payment.svg') }}" alt="">
                     <h1 class="format-commas">{{\App\Models\Installment::sum('amount')}}</h1>
@@ -34,6 +34,24 @@
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/balance.svg') }}" alt="">
                     <h1 class="format-commas">{{\App\Models\Form::sum('total_price') - \App\Models\Installment::sum('amount')}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="top-card">
+                <h2>Total Down payment</h2>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/down-payment.svg') }}" alt="">
+                    <h1 class="format-commas">0</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="top-card">
+                <h2>Total Installments</h2>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/images/svg/installments.svg') }}" alt="">
+                    <h1 class="format-commas">0</h1>
                 </div>
             </div>
         </div>

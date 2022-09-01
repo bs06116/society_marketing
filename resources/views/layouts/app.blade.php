@@ -96,6 +96,13 @@
                 </li>
                 @endcan
 
+                <li>
+                    <a href="{{ url('dealers') }}" <?php if(request()->is('dealers')){ echo "class='active'";} ?> title="Dealers">
+                        <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
+                        <span>Dealers</span>
+                    </a>
+                </li>
+                
                 @canany(['user-view'])
                 <li>
                     <a href="{{ route('users.index') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">
@@ -104,7 +111,6 @@
                     </a>
                 </li>
                 @endcan
-
             </ul>
         </aside>
 

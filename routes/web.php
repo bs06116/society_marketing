@@ -72,10 +72,6 @@ Route::group(['middleware' => ['auth']], function() {
 });
 Auth::routes();
 
-// Route::get('/reports', function () {
-//     return view('pages.reports');
-// });
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/invoice', function () {
@@ -86,20 +82,22 @@ Route::get('/plots', function () {
     return view('pages.plots');
 });
 
-
-
 Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
-
-
 
 Route::get('/create-file', function () {
     return view('pages.create-file');
 });
 
-// Route::get('/add-block', function () {
+Route::get('/dealers', function () {
+    return view('pages.dealers');
+});
 
+// Route::get('/add-block', function () {
 //     return view('pages.create-block');
 // });
 
+// Route::get('/reports', function () {
+//     return view('pages.reports');
+// });
