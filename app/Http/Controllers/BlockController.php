@@ -231,7 +231,8 @@ class BlockController extends Controller
         $skip = request('start');
         $take = request('length');
         $search = request('search');
-        $query = BookDealerPlot::select('users.name','book_dealer_plot.*')->join('users','users.id','=','book_dealer_plot.user_id');
+        $query = BookDealerPlot::select('users.name','book_dealer_plot.*','block.name as block_name')->join('users','users.id','=','book_dealer_plot.user_id')
+        ->join('block','block.id','=','book_dealer_plot.block_number');
         $query->orderBy('book_dealer_plot.id', 'DESC')->get();
         $recordsTotal = $query->count();
         if (isset($search['value'])) {
@@ -243,7 +244,7 @@ class BlockController extends Controller
         $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
         foreach ($data as $d) {
             $d->name = $d->name;
-            $d->block = $d->block_number;
+            $d->block = $d->block_name;
             $d->plot_number = $d->plot_number;
             $d->action = '<a href="'.route('delete-booked-plots',$d->id).'"><button class="btn-none">
             <img src="'.asset("assets/images/svg/delete.svg").'"  width="15">

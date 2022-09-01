@@ -2,10 +2,13 @@
 <div class="file-info-main">
 
 <div class="d-flex align-items-center mb-4 pb-2">
-    {{-- <img src="{{ asset('assets/images/avatar-2.png') }}" alt="" class="avatar"> --}}
+    <img src="{{ asset('assets/images/'.!empty($result->image)?$result->image:'avatar-2.png') }}" alt="" class="avatar">
     <div>
         <h6 class="name m-0">{{$result->applicant_name}}</h6>
         <p class="email m-0">{{$result->email}}</p>
+        <p class="email m-0">{{$result->mobile_no}}</p>
+        <p class="email m-0">{{$result->cnic}}</p>
+
     </div>
 </div>
 

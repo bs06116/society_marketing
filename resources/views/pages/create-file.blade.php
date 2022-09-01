@@ -2,7 +2,7 @@
 @section('content')
 <form method="POST" action="{{url('save-form')}}" enctype="multipart/form-data">
 @csrf
-<input type="hidden" value="{{$form->id}}" name="form_id">
+<input type="hidden" value="{{isset($form->id)?$form->id:''}}" name="form_id">
 <div class="main-padding">
     <div class="table-card">
         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -17,7 +17,7 @@
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">App No</label>
                 <input type="number" name="app_no" value="{{isset($form) ? $form->app_no : old('app_no')}}" class="theme-input" placeholder="App No">
-                @if($errors->has('app_no')) 
+                @if($errors->has('app_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('app_no') }}</strong>
                     </span>
@@ -26,7 +26,7 @@
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">Reg No</label>
                 <input type="number" value="{{isset($form) ? $form->reg_no : old('reg_no')}}" name="reg_no" class="theme-input" placeholder="Reg No">
-                @if($errors->has('reg_no')) 
+                @if($errors->has('reg_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('reg_no') }}</strong>
                     </span>
@@ -35,7 +35,7 @@
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">Form No</label>
                 <input type="number" value="{{isset($form) ? $form->form_no : old('form_no')}}" name="form_no" class="theme-input" placeholder="Form No">
-                @if($errors->has('form_no')) 
+                @if($errors->has('form_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('form_no') }}</strong>
                     </span>
@@ -54,7 +54,7 @@
                         <option {{isset($form) ? ($form->plot_type == 'commercial' ? 'selected' : '') :''}} value="commercial">Commercial</option>
                         <option {{isset($form) ? ($form->plot_type == 'both' ? 'selected' : '') :''}} value="both">Both</option>
                     </select>
-                    @if($errors->has('type')) 
+                    @if($errors->has('type'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('type') }}</strong>
                         </span>
@@ -70,7 +70,7 @@
                             @endforeach
                         @endif
                     </select>
-                    @if($errors->has('block')) 
+                    @if($errors->has('block'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('block') }}</strong>
                         </span>
@@ -86,7 +86,7 @@
                             @endforeach
                         @endif
                     </select>
-                    @if($errors->has('plot_size')) 
+                    @if($errors->has('plot_size'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('plot_size') }}</strong>
                         </span>
@@ -95,7 +95,7 @@
                 <div class="col-md-4 col-sm-6">
                     <label for="" class="theme-label">Plot No</label>
                     <input type="number" value="{{isset($form) ? $form->plot_no : old('plot_no')}}" name="plot_no" class="theme-input" placeholder="Plot No">
-                    @if($errors->has('plot_no')) 
+                    @if($errors->has('plot_no'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('plot_no') }}</strong>
                         </span>
@@ -104,7 +104,7 @@
                 <div class="col-md-4 col-sm-6">
                     <label for="" class="theme-label">Street No</label>
                     <input type="number" value="{{isset($form) ? $form->street_no : old('street_no')}}" name="street_no" class="theme-input" placeholder="Street No">
-                    @if($errors->has('street_no')) 
+                    @if($errors->has('street_no'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('street_no') }}</strong>
                         </span>
@@ -113,7 +113,7 @@
                 <div class="col-md-4 col-sm-6">
                     <label for="" class="theme-label">Location/Type</label>
                     <input type="text" value="{{isset($form) ? $form->location : old('location_type')}}" name="location_type" class="theme-input" placeholder="Location/Type">
-                    @if($errors->has('location_type')) 
+                    @if($errors->has('location_type'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('location_type') }}</strong>
                         </span>
@@ -143,7 +143,7 @@
                             <span class="checkmark"></span>
                         </label>
                     </div>
-                    @if($errors->has('preference_of_plot')) 
+                    @if($errors->has('preference_of_plot'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('preference_of_plot') }}</strong>
                         </span>
@@ -160,21 +160,21 @@
                     <option {{isset($form) ? ($form->payment_type == 'installment' ? 'selected' : '') : (old('payment') == 'installment' ? 'selected' : '')}} value="installment">Installment</option>
                     <option {{isset($form) ? ($form->payment_type == 'lump sum' ? 'selected' : '') : (old('payment') == 'lump sum' ? 'selected' : '')}} value="lump sum">Lump Sum</option>
                 </select>
-                @if($errors->has('payment')) 
+                @if($errors->has('payment'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('payment') }}</strong>
                     </span>
                 @endif
             </div>
         </div>
-        
+
         <h1 class="small-heading">For office use only</h1>
         <div class="table-card mb-3">
             <div class="row mb-2">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <label for="" class="theme-label">Extra Land</label>
                     <input type="text" value="{{isset($form) ? $form->extra_lan : old('extra_land')}}" name="extra_land" class="theme-input" placeholder="Extra land">
-                    @if($errors->has('extra_land')) 
+                    @if($errors->has('extra_land'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('extra_land') }}</strong>
                         </span>
@@ -183,7 +183,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <label for="" class="theme-label">Extra Land Cost</label>
                     <input type="text" name="extra_land_cost" value="{{isset($form)? $form->extra_land_cost :old('extra_land_cost')}}" class="theme-input format-commas-input" placeholder="Extra land cost">
-                    @if($errors->has('extra_land_cost')) 
+                    @if($errors->has('extra_land_cost'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('extra_land_cost') }}</strong>
                         </span>
@@ -192,7 +192,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <label for="" class="theme-label">Booking Data</label>
                     <input type="date" value="{{isset($form) ? $form->booking_data : old('booking_date')}}" name="booking_date" class="theme-input" placeholder="Booking data">
-                    @if($errors->has('booking_date')) 
+                    @if($errors->has('booking_date'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('booking_date') }}</strong>
                         </span>
@@ -201,7 +201,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <label for="" class="theme-label">Total Price</label>
                     <input type="text" value="{{isset($form) ? $form->total_price : old('total_price')}}" name="total_price" class="theme-input format-commas-input" placeholder="Total Price">
-                    @if($errors->has('total_price')) 
+                    @if($errors->has('total_price'))
                         <span class="fields-error" role="alert">
                             <strong style="color: red;">{{ $errors->first('total_price') }}</strong>
                         </span>
@@ -215,7 +215,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">Name of Applicant</label>
                 <input type="text" value="{{isset($form) ? $form->applicant_name : old('name_of_applicant')}}" name="name_of_applicant" class="theme-input" placeholder="Name of applicant">
-                @if($errors->has('name_of_applicant')) 
+                @if($errors->has('name_of_applicant'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('name_of_applicant') }}</strong>
                     </span>
@@ -224,7 +224,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">S/O, D/0, W/O</label>
                 <input type="text" value="{{isset($form) ? $form->aplicant_type : old('applicant_type')}}" name="applicant_type" class="theme-input" placeholder="S/O, D/0, W/O">
-                @if($errors->has('applicant_type')) 
+                @if($errors->has('applicant_type'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('applicant_type') }}</strong>
                     </span>
@@ -233,7 +233,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">CNIC No</label>
                 <input type="text" value="{{isset($form) ? $form->cnic : old('cnic_no')}}" name="cnic_no" class="theme-input cnic" placeholder="XXXXX-XXXXXXX-X">
-                @if($errors->has('cnic_no')) 
+                @if($errors->has('cnic_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('cnic_no') }}</strong>
                     </span>
@@ -242,7 +242,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">Passport No</label>
                 <input type="number" value="{{isset($form) ? $form->passport_no : old('passport_no')}}" name="passport_no" class="theme-input" placeholder="Passport No">
-                @if($errors->has('passport_no')) 
+                @if($errors->has('passport_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('passport_no') }}</strong>
                     </span>
@@ -251,7 +251,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">Mailing Address</label>
                 <input type="text"value="{{isset($form) ? $form->mail_address : old('mailing_address')}}"  name="mailing_address" class="theme-input" placeholder="Mailing address">
-                @if($errors->has('mailing_address')) 
+                @if($errors->has('mailing_address'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('mailing_address') }}</strong>
                     </span>
@@ -260,7 +260,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">Permanent Address</label>
                 <input type="text" value="{{isset($form) ? $form->permanent_address : old('permanent_address')}}" name="permanent_address" class="theme-input" placeholder="Permanent address">
-                @if($errors->has('permanent_address')) 
+                @if($errors->has('permanent_address'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('permanent_address') }}</strong>
                     </span>
@@ -269,7 +269,7 @@
             <div class="col-md-4 col-sm-6">
                 <label for="" class="theme-label">Phone No</label>
                 <input type="number" value="{{isset($form) ? $form->phone_no : old('phone_no')}}" name="phone_no" class="theme-input" placeholder="Phone No">
-                @if($errors->has('phone_no')) 
+                @if($errors->has('phone_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('phone_no') }}</strong>
                     </span>
@@ -278,7 +278,7 @@
             <div class="col-md-4 col-sm-6">
                 <label for="" class="theme-label">Mobile No</label>
                 <input type="number" value="{{isset($form) ? $form->mobile_no : old('mobile_no')}}" name="mobile_no" class="theme-input" placeholder="Mobile No">
-                @if($errors->has('mobile_no')) 
+                @if($errors->has('mobile_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('mobile_no') }}</strong>
                     </span>
@@ -287,7 +287,7 @@
             <div class="col-md-4 col-sm-6">
                 <label for="" class="theme-label">Email</label>
                 <input type="email" value="{{isset($form) ? $form->email : old('email')}}" name="email" class="theme-input" placeholder="Email">
-                @if($errors->has('email')) 
+                @if($errors->has('email'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('email') }}</strong>
                     </span>
@@ -300,7 +300,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">Name of Applicant</label>
                 <input type="text" value="{{isset($form) ? $form->nominee_applicant_name : old('nominee_name')}}" name="nominee_name" class="theme-input" placeholder="Name of applicant">
-                @if($errors->has('nominee_name')) 
+                @if($errors->has('nominee_name'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('nominee_name') }}</strong>
                     </span>
@@ -309,7 +309,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">S/O, D/0, W/O</label>
                 <input type="text" value="{{isset($form) ? $form->nominee_applicant_type : old('nominee_type')}}" name="nominee_type" class="theme-input" placeholder="S/O, D/0, W/O">
-                @if($errors->has('nominee_type')) 
+                @if($errors->has('nominee_type'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('nominee_type') }}</strong>
                     </span>
@@ -318,7 +318,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">CNIC No</label>
                 <input type="text" value="{{isset($form) ? $form->nominee_applicant_cnic : old('nominee_cnic')}}" name="nominee_cnic" class="theme-input cnic" placeholder="XXXXX-XXXXXXX-X">
-                @if($errors->has('nominee_cnic')) 
+                @if($errors->has('nominee_cnic'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('nominee_cnic') }}</strong>
                     </span>
@@ -327,7 +327,7 @@
             <div class="col-sm-6">
                 <label for="" class="theme-label">Passport No</label>
                 <input type="number" value="{{isset($form) ? $form->nominee_applicant_passport : old('nominee_passport')}}" name="nominee_passport" class="theme-input" placeholder="Passport No">
-                @if($errors->has('nominee_passport')) 
+                @if($errors->has('nominee_passport'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('nominee_passport') }}</strong>
                     </span>
@@ -356,8 +356,8 @@
                 });
 
                 $(".blocks").append(blocks);
-         } 
-       }); 
+         }
+       });
     });
     $(".blocks").on('change',function(){
         $(".plot_size").empty();
@@ -372,8 +372,8 @@
                 });
 
                 $(".plot_size").append(size_options);
-         } 
-       }); 
+         }
+       });
     });
 </script>
 @endsection
