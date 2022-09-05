@@ -166,10 +166,16 @@
                     </span>
                 @endif
             </div>
+{{--
             <div class="col-lg-4 col-md-5 col-sm-6">
-                <label for="" class="theme-label">Refernce</label>
-                <input type="text" class="theme-input" placeholder="Refernce">
-            </div>
+                <label for="" class="theme-label">Dealers</label>
+                <select name="user_id" id="" class="theme-select">
+                    <option value="" selected disabled>Select Dealer</option>
+                    @foreach($dealers as $dealer)
+                    <option {{isset($form) ? ($form->user_id == $dealer->id ? 'selected' : '') : (old('user_id') == $dealer->user_id ? 'selected' : '')}} value="{{$dealer->id}}">{{$dealer->name}}</option>
+                    @endforeach
+                </select>
+            </div> --}}
         </div>
 
         <h1 class="small-heading">For office use only</h1>

@@ -97,12 +97,12 @@
                 @endcan
 
                 <li>
-                    <a href="{{ url('dealers') }}" <?php if(request()->is('dealers')){ echo "class='active'";} ?> title="Dealers">
+                    <a href="{{ route('dealers-booked-plots') }}" <?php if(request()->is('dealers-booked-plots')){ echo "class='active'";} ?> title="Dealers">
                         <img src="{{ asset('assets/images/svg/users.svg') }}" alt="">
-                        <span>Dealers</span>
+                        <span>Dealers Sale Plot </span>
                     </a>
                 </li>
-                
+
                 @canany(['user-view'])
                 <li>
                     <a href="{{ route('users.index') }}" <?php if(request()->is('users*')){ echo "class='active'";} ?> title="Users">

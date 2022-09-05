@@ -63,7 +63,7 @@
                 <h1 class="heading">Filter File</h1>
                 @canany(['create-form'])
 
-                <a href="{{ url('create-file') }}">
+                <a href="{{ route('forms.create') }}">
                     <button class="theme-btn">Add File</button>
                 </a>
                 @endcan

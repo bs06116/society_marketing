@@ -166,6 +166,60 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
         return redirect()->route('users.index')->with('success','User updated successfully');
     }
+    public function dealerBookedPlot(Request $request)
+    {
+        if ($request->ajax()) {
+        if(!auth()->user()->can("user-delete")){
+            $classDelete = 'd-none';
+        }else{
+            $classDelete = '';
+        }
+        if(!auth()->user()->can("user-edit")){
+            $classEdit = 'd-none';
+        }else{
+            $classEdit = '';
+        }
+        $_order = request('order');
+        $_columns = request('columns');
+        $order_by = $_columns[$_order[0]['column']]['name'];
+        $order_dir = $_order[0]['dir'];
+        $search = request('search');
+        $skip = request('start');
+        $take = request('length');
+        $search = request('search');
+        $query = User::query()->whereHas(
+            'roles', function($q){
+                $q->where('name', 'Dealer');
+            }
+        );
+
+        $query->orderBy('id', 'DESC')->get();
+        $recordsTotal = $query->count();
+        if (isset($search['value'])) {
+            $query->where(function ($q) use ($search) {
+                $q->whereRaw("name LIKE '%" . $search['value'] . "%' ");
+            });
+        }
+        $recordsFiltered = $query->count();
+        $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
+        foreach ($data as $d) {
+            $d->name = $d->name;
+            $d->phone_number = $d->phone_number;
+            $d->total_plots = DB::table('forms')->where("user_id",$d->id)
+            ->count();
+
+
+        }
+        return [
+            "draw" => request('draw'),
+            "recordsTotal" => $recordsTotal,
+            'recordsFiltered' => $recordsFiltered,
+            "data" => $data,
+        ];
+    }
+        return view('pages.dealers');
+
+    }
 
     /**
      * Remove the specified resource from storage.

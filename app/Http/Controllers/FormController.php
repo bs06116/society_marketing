@@ -94,7 +94,14 @@ class FormController extends Controller
     public function create()
     {
         $this->middleware('permission:create-form');
-        return view('pages.create-file');
+        $query = User::query()->whereHas(
+            'roles', function($q){
+                $q->where('name', 'Dealer');
+            }
+        );
+        $dealers = $query->orderBy('id', 'DESC')->get();
+
+        return view('pages.create-file',compact('dealers'));
     }
 
     /**
@@ -230,6 +237,7 @@ class FormController extends Controller
             'plot_type'=>$request->type,
             'block_no'=>$request->block,
             'plot_size'=>$request->plot_size,
+            // 'user_id'=>$request->user_id,
             'plot_no'=>$request->plot_no,
             'street_no'=>$request->street_no,
             'location'=>$request->location_type,
@@ -285,6 +293,7 @@ class FormController extends Controller
         $installment_date = $request->installment_date;
         $total_price = $request->total_price;
         $down_payment = $request->down_payment;
+        $user_id = $request->user_id;
         $form = Form::find($id);
         if($form){
             // Installment::where('forms_id',$id)->delete();
@@ -294,7 +303,7 @@ class FormController extends Controller
                     'installment_date'=>$installment_date[$index],'forms_id'=>$id);
                 }
             }
-            Form::where('id',$id)->update(array('total_price'=>$total_price,'down_payment'=>$down_payment));
+            Form::where('id',$id)->update(array('total_price'=>$total_price,'down_payment'=>$down_payment,'user_id'=>$user_id));
             if(count($dataInstallment)>0){
                 Installment::insert($dataInstallment);
             }
@@ -338,7 +347,13 @@ class FormController extends Controller
     public function viewFinancial($id = null){
         $installemnts = Installment::where('forms_id',$id)->get();
         $form = Form::where('id',$id)->first();
-        return view('pages.financial-view',compact('id','installemnts','form'));
+        $query = User::query()->whereHas(
+            'roles', function($q){
+                $q->where('name', 'Dealer');
+            }
+        );
+        $dealers = $query->orderBy('id', 'DESC')->get();
+        return view('pages.financial-view',compact('id','installemnts','form','dealers'));
     }
     public function dealerDashbaord(){
         return view('pages.dashboard-dealer');
@@ -395,7 +410,13 @@ class FormController extends Controller
         }
         $blocks =Block::where(['plot_catergory'=> $form->plot_type])->get();
         $plot_sizes = BlockPlot::where(['block_id'=> $form->block_no])->get();
-        return view('pages.create-file', compact('form', 'blocks', 'plot_sizes'));
+        $query = User::query()->whereHas(
+            'roles', function($q){
+                $q->where('name', 'Dealer');
+            }
+        );
+        $dealers = $query->orderBy('id', 'DESC')->get();
+        return view('pages.create-file', compact('form', 'blocks', 'plot_sizes','dealers'));
     }
 
 }

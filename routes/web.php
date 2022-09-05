@@ -38,6 +38,11 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::GET('profit-calculation', [HomeController::class, 'profit_calculation']);
     Route::resource('roles', RoleController::class);
+    // Route::get('/dealers', function () {
+    //     return view('pages.dealers');
+    // });
+    Route::GET('dealers-booked-plots', [UserController::class, 'dealerBookedPlot'])->name('dealers-booked-plots');
+
     Route::resource('users', UserController::class);
     // Route::GET('financial_view', function () {
     //     return view('pages.financial-view');
@@ -86,13 +91,11 @@ Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
 
-Route::get('/create-file', function () {
-    return view('pages.create-file');
-});
+// Route::get('/create-file', function () {
+//     return view('pages.create-file');
+// });
 
-Route::get('/dealers', function () {
-    return view('pages.dealers');
-});
+
 
 // Route::get('/add-block', function () {
 //     return view('pages.create-block');

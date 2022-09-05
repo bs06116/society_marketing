@@ -17,6 +17,15 @@
                     <label for="" class="theme-label">Down Payment</label>
                     <input type="number" name="down_payment" value="{{$form->down_payment}}" class="theme-input" placeholder="Down payment">
                 </div>
+                <div class="col-md-6">
+                    <label for="" class="theme-label">Dealers</label>
+                    <select name="user_id" id="" class="theme-select">
+                        <option value="" selected disabled>Select Dealer</option>
+                        @foreach($dealers as $dealer)
+                        <option {{isset($form) ? ($form->user_id == $dealer->id ? 'selected' : '') : (old('user_id') == $dealer->user_id ? 'selected' : '')}} value="{{$dealer->id}}">{{$dealer->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         <div class="row">
             <div class="col-6">

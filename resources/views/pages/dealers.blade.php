@@ -5,17 +5,17 @@
     <div class="table-card">
         <h1 class="heading">Dealers</h1>
         <div class="table-responsive">
-            <table class="theme-table">
+            <table id="myTable" class="theme-table">
                 <thead>
                     <tr>
                         <th>Dealers name</th>
-                        <th>----</th>
-                        <th>----</th>
-                        <th>Action</th>
+                        <th>Phone Number</th>
+                        <th>Total Sales Plots</th>
+                        {{-- <th>Action</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    {{-- <tr>
                         <td>----</td>
                         <td>----</td>
                         <td>----</td>
@@ -29,10 +29,48 @@
                                 </button>
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#myTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('dealers-booked-plots') }}",
+                    data: function(d) {
+                        //   d.approved = $('#approved').val(),
+                        //  d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'phone_number',
+                        name: 'phone_number'
+                    },
+                    {
+                        data: 'total_plots',
+                        name: 'total_plots'
+                    }
+                ]
+            });
+
+            //   $('#approved').change(function(){
+            //       table.draw();
+            //   });
+
+        });
+    </script>
+
+@endpush
