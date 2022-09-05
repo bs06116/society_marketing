@@ -38,15 +38,11 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::GET('profit-calculation', [HomeController::class, 'profit_calculation']);
     Route::resource('roles', RoleController::class);
-    // Route::get('/dealers', function () {
-    //     return view('pages.dealers');
-    // });
+
     Route::GET('dealers-booked-plots', [UserController::class, 'dealerBookedPlot'])->name('dealers-booked-plots');
 
     Route::resource('users', UserController::class);
-    // Route::GET('financial_view', function () {
-    //     return view('pages.financial-view');
-    // });
+    Route::GET('generate-pdf', [FormController::class, 'generatePDF'])->name('generate-pdf');
     Route::GET('form/financial/{id}', [FormController::class, 'viewFinancial'])->name('financial.view');
     Route::POST('add-financial', [FormController::class, 'addFinancial'])->name('financial.add');
     Route::POST('add-commission', [FormController::class, 'addCommission'])->name('commission.add');

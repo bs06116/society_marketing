@@ -19,6 +19,8 @@ use Response;
 use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+
 
 class FormController extends Controller
 {
@@ -417,6 +419,11 @@ class FormController extends Controller
         );
         $dealers = $query->orderBy('id', 'DESC')->get();
         return view('pages.create-file', compact('form', 'blocks', 'plot_sizes','dealers'));
+    }
+
+    public function generatePDF(){
+        $pdf = PDF::loadview('pages.pdf');
+        return $pdf->download(time().'.pdf');
     }
 
 }
