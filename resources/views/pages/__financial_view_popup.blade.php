@@ -30,7 +30,7 @@
         <p class="m-0">{{$result->plot_type}}</p>
     </div>
     <div class="d-flex info">
-        <h5 class="m-0">-----</h5>
+        <h5 class="m-0">Plot Size</h5>
         <p class="m-0">{{$result->plot_size}}</p>
     </div>
 </div>

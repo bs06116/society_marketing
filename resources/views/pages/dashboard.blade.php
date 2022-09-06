@@ -24,7 +24,7 @@
                 <h2>Total Payment Received</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/total-payment.svg') }}" alt="">
-                    <h1 class="format-commas">{{\App\Models\Installment::sum('amount')}}</h1>
+                    <h1 class="format-commas">{{\App\Models\Form::sum('down_payment') + \App\Models\Installment::sum('amount')}}</h1>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <h2>Total Down payment</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/down-payment.svg') }}" alt="">
-                    <h1 class="format-commas">0</h1>
+                    <h1 class="format-commas">{{\App\Models\Form::sum('down_payment')}}</h1>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                 <h2>Total Installments</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/installments.svg') }}" alt="">
-                    <h1 class="format-commas">0</h1>
+                    <h1 class="format-commas">{{\App\Models\Installment::sum('amount')}}</h1>
                 </div>
             </div>
         </div>

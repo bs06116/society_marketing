@@ -140,7 +140,7 @@
                 success: function(response) {
                     $(".spinner").hide();
                     toastr.success(response.msg);
-                    setTimeout(function(){ window.location = "{{route('forms.index')}}" }, 3000);
+                    setTimeout(function(){ window.location = "{{route('dashboard.index')}}" }, 3000);
                 },
                 error: function(response) {
 
