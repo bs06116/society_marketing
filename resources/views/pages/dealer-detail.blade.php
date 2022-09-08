@@ -39,37 +39,43 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
             </div>
@@ -79,19 +85,22 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="dealer-card top-card">
                         <h6 class="mb-3">Block No.<span>1</span></h6>
-                        <h6 class="m-0">Plot No.<span>69</span></h1>
+                        <h6 class="mb-3">Plot No.<span>69</span></h1>
+                        <h6 class="m-0">Plot Size.<span>30x40</span></h1>
                     </div>
                 </div>
             </div>
