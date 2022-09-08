@@ -12,11 +12,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="theme-label">Total Worth</label>
-                    <input type="number" name="total_price" value="{{$form->total_price}}" id="total_worth" class="theme-input" placeholder="Total worth">
+                    <input type="text" name="total_price" value="{{$form->total_price}}" id="total_worth" class="theme-input" placeholder="Total worth">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="theme-label">Down Payment</label>
-                    <input type="number" name="down_payment" value="{{$form->down_payment}}" class="theme-input" placeholder="Down payment">
+                    <input type="text" name="down_payment" value="{{$form->down_payment}}" class="theme-input" placeholder="Down payment">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="theme-label">Dealers</label>

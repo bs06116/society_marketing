@@ -15,7 +15,7 @@
 <div class="px-4">
     <div class="d-flex info">
         <h5 class="m-0">Block #</h5>
-        <p class="m-0">{{$result->block_no}}</p>
+        <p class="m-0">{{$result->name}}</p>
     </div>
     <div class="d-flex info">
         <h5 class="m-0">Plot #</h5>

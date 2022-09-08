@@ -7,13 +7,27 @@
             <button class="theme-btn">Booked Plots</button>
         </a> --}}
     </div>
+          @php
+             $totalPlots = 0;
+             $totalPlotsPurchased = 0;
+             $availablePlots = 0;
+             $allPlots =  \App\Models\BlockPlot::groupBy('plot_size')->selectRaw('sum(total_plot) as total_plot,plot_size,id')->get();
+           @endphp
+        @foreach($allPlots as $ap)
+            @php
+              $totalPlots += $ap->total_plot;
+              $totalAllPurchased =\App\Models\BlockPlot::join('forms', 'forms.plot_size', '=', 'block_plots.id')->where('forms.plot_size',$ap->id)->count();
+              $totalPlotsPurchased += $totalAllPurchased;
+              $availablePlots +=  $ap->total_plot - $totalAllPurchased;
+           @endphp
+        @endforeach
     <div class="row mb-4">
         <div class="col-lg-4 col-md-6">
             <div class="top-card">
                 <h2>Total</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/total.svg') }}" alt="">
-                    <h1 class="format-commas">{{\App\Models\Form::count()}}</h1>
+                    <h1 class="format-commas">{{$totalPlots}}</h1>
                 </div>
             </div>
         </div>
@@ -22,7 +36,7 @@
                 <h2>Purchased</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/not-available.svg') }}" alt="">
-                    <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                    <h1 class="format-commas">{{$totalPlotsPurchased}}</h1>
                 </div>
             </div>
         </div>
@@ -31,7 +45,7 @@
                 <h2>Available</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/available.svg') }}" alt="">
-                    <h1 class="format-commas">{{\App\Models\Form::join('intallment', 'intallment.forms_id', '!=', 'forms.id')->groupBy('intallment.id')->count()}}</h1>
+                    <h1 class="format-commas">{{$availablePlots}}</h1>
                 </div>
             </h1>
             </div>

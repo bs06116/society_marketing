@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Route::resource('customers', CustomerController::class);
     Route::GET('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
-    Route::GET('booked-plots', [BlockController::class,'bookPlot'])->name('book.plot');
+    Route::GET('booked-plots', [BlockController::class,'bookPlot'])->name('booked.plots');
     Route::GET('delete-booked-plots/{id}', [BlockController::class,'deleteBookPlot'])->name('delete-booked-plots');
 
 

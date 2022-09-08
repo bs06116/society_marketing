@@ -330,7 +330,9 @@ class FormController extends Controller
     public function getApplciaton(Request $request){
         $block_id = $request->block_id;
         $plot_num = $request->plot_num;
-        $result = Form::where('block_no',$block_id)->where('plot_no',$plot_num)->first();
+        $result = Form::select('forms.id','forms.image','forms.applicant_name',
+        'forms.email','forms.mobile_no','forms.cnic','forms.plot_no','forms.street_no','forms.plot_type'
+        ,'block.name','block_plots.plot_size')->join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('block_no',$block_id)->where('plot_no',$plot_num)->first();
         if($result){
             $html = \View::make('pages.__financial_view_popup',compact('result'));
             return Response::json([
