@@ -576,11 +576,12 @@ select[name="myTable_length"] {
 .theme-input-group {
     margin-bottom: 18px;
 }
-.form-control:disabled, .form-control[readonly] {
+.form-control:disabled,
+.form-control[readonly] {
     background-color: #e9ecef4f;
 }
 .modal.fade {
-    transition: opacity .05s ease-in !important;
+    transition: opacity 0.05s ease-in !important;
 }
 .reports-daily-checkbox {
     margin-top: 43px;
@@ -641,7 +642,8 @@ select[name="myTable_length"] {
 .file-info-main {
     padding: 20px 30px;
 }
-.file-info-main .avatar, .avatar_ {
+.file-info-main .avatar,
+.avatar_ {
     width: 83px;
     height: 87px;
     box-shadow: 0px 2px 6px #00000029;
@@ -654,14 +656,17 @@ select[name="myTable_length"] {
 .file-info-main p {
     font-size: 13px;
 }
-.file-info-main p, .border_info p {
+.file-info-main p,
+.border_info p {
     font-size: 13px;
 }
-.file-info-main .info, .border_info {
+.file-info-main .info,
+.border_info {
     border-bottom: 1px solid #ececec;
     padding: 7px 0 7px 0;
 }
-.file-info-main .info h5, .border_info h5 {
+.file-info-main .info h5,
+.border_info h5 {
     width: 140px;
     font-size: 14px;
     color: #5c5c5c;
@@ -684,7 +689,8 @@ select[name="myTable_length"] {
 .weight-300 {
     font-weight: 300;
 }
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 .plot-size-heading {
@@ -693,9 +699,17 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     font-weight: 600;
 }
 label.error {
-    color: #FF6873;
+    color: #ff6873;
     margin: 0 0 18px;
 }
 .inset-0 {
     inset: 0;
+}
+.dealer-card h6 {
+    font-size: 15px;
+    font-weight: 600;
+}
+.dealer-card h6 span {
+    font-weight: 400;
+    padding-left: 8px;
 }

@@ -87,11 +87,13 @@ Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
 
+Route::get('/dealer-detail', function () {
+    return view('pages.dealer-detail');
+});
+
 // Route::get('/create-file', function () {
 //     return view('pages.create-file');
 // });
-
-
 
 // Route::get('/add-block', function () {
 //     return view('pages.create-block');

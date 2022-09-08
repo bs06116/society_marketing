@@ -11,7 +11,7 @@
                         <th>Dealers name</th>
                         <th>Phone Number</th>
                         <th>Total Sales Plots</th>
-                        {{-- <th>Action</th> --}}
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +62,10 @@
                     {
                         data: 'total_plots',
                         name: 'total_plots'
+                    },
+                    {
+                        data: 'action',
+                        name: 'actions'
                     }
                 ]
             });
