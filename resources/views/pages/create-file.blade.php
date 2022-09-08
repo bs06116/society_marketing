@@ -52,7 +52,7 @@
                         <option value="" selected disabled>Select type</option>
                         <option {{isset($form) ? ($form->plot_type == 'residential' ? 'selected' : '') :''}} value="residential">Residential</option>
                         <option {{isset($form) ? ($form->plot_type == 'commercial' ? 'selected' : '') :''}} value="commercial">Commercial</option>
-                        <option {{isset($form) ? ($form->plot_type == 'both' ? 'selected' : '') :''}} value="both">Both</option>
+                        {{-- <option {{isset($form) ? ($form->plot_type == 'both' ? 'selected' : '') :''}} value="both">Both</option> --}}
                     </select>
                     @if($errors->has('type'))
                         <span class="fields-error" role="alert">

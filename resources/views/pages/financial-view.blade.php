@@ -4,7 +4,7 @@
     <div class="table-card">
         <div class="d-flex align-items-start justify-content-between">
             <h1 class="heading">Financial View</h1>
-            <a href="{{route('generate-pdf')}}">
+            <a href="{{route('generate-pdf',$form->id)}}">
                 <button class="theme-btn">Download Receipt</button>
             </a>
         </div>

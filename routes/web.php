@@ -9,11 +9,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\BlockController;
 
-
-
 Route::get('/clear-cache', function() {
     Artisan::call('optimize');
-
     echo "Cleared!";
     die;
     // return what you want
@@ -42,7 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::GET('dealers-booked-plots', [UserController::class, 'dealerBookedPlot'])->name('dealers-booked-plots');
 
     Route::resource('users', UserController::class);
-    Route::GET('generate-pdf', [FormController::class, 'generatePDF'])->name('generate-pdf');
+    Route::GET('generate-pdf/{id}', [FormController::class, 'generatePDF'])->name('generate-pdf');
     Route::GET('form/financial/{id}', [FormController::class, 'viewFinancial'])->name('financial.view');
     Route::POST('add-financial', [FormController::class, 'addFinancial'])->name('financial.add');
     Route::POST('add-commission', [FormController::class, 'addCommission'])->name('commission.add');
@@ -53,9 +50,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Route::resource('customers', CustomerController::class);
     Route::GET('/dashboard', [HomeController::class, 'index'])->name('dashboard.index');
+    Route::GET('dealer-detail/{id}', [UserController::class, 'dealerDeatils'])->name('dealer-detail');
     Route::GET('booked-plots', [BlockController::class,'bookPlot'])->name('booked.plots');
     Route::GET('delete-booked-plots/{id}', [BlockController::class,'deleteBookPlot'])->name('delete-booked-plots');
-
 
     Route::resource('blocks', BlockController::class);
     Route::GET('get-plot-size/{block_id}', [BlockController::class, 'get_plot_size']);
@@ -69,7 +66,6 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::get('/dashboard-dealer', function () {
     //     return view('pages.dashboard-dealer');
     // });
-
 });
 Auth::routes();
 
@@ -87,9 +83,9 @@ Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
 
-Route::get('/dealer-detail', function () {
-    return view('pages.dealer-detail');
-});
+// Route::get('/dealer-detail', function () {
+//     return view('pages.dealer-detail');
+// });
 
 // Route::get('/create-file', function () {
 //     return view('pages.create-file');

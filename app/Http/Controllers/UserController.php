@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Form;
+
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -205,10 +207,8 @@ class UserController extends Controller
         foreach ($data as $d) {
             $d->name = $d->name;
             $d->phone_number = $d->phone_number;
-            $d->total_plots = DB::table('forms')->where("user_id",$d->id)
-            ->count();
-
-
+            $d->total_plots = DB::table('forms')->where("user_id",$d->id)->count();
+            $d->action = '<a href="'.route('dealer-detail',$d->id).'">View</a>';
         }
         return [
             "draw" => request('draw'),
@@ -232,5 +232,14 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
+    }
+
+    public function dealerDeatils($id){
+       $data["total_residentail_dealer"] = DB::table('forms')->where("user_id",$id)->where("plot_type","residential")->count();
+       $data["total_commerical_dealer"] = DB::table('forms')->where("user_id",$id)->where("plot_type","commercial")->count();
+       $data["residentialPlot"] = Form::join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('plot_type','residential')->groupBy('plot_size')->selectRaw('count(*) as total_plot,forms.id,block.name,block_plots.plot_size')->get();
+       $data["commercialPlot"] = Form::join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('plot_type','commercial')->groupBy('plot_size')->selectRaw('count(*) as total_plot,forms.id,block.name,block_plots.plot_size')->get();
+
+       return view('pages.dealer-detail',$data);
     }
 }
