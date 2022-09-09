@@ -1,13 +1,27 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    @media print {
+        .theme-navbar,
+        .theme-aside,
+        .print-none {
+            display: none !important;
+        }
+        .main-padding {
+            padding: 0;
+        }
+    }
+    @page {
+        margin: 25px;
+    }
+</style>
 <form method="POST" action="{{url('save-form')}}" enctype="multipart/form-data">
 @csrf
 <input type="hidden" value="{{isset($form->id)?$form->id:''}}" name="form_id">
-<a href="{{route('generate-file-pdf')}}">Download Receipt</a>
 <div class="main-padding">
     <div class="table-card">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid" width="100">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid" width="75">
             <h1 class="heading text-center">Application Form</h1>
             <div class="position-relative">
                 <img src="{{ isset($form) ? (!empty($form->image) ? asset($form->image) : asset('assets/images/avatar3.png')) : asset('assets/images/avatar3.png') }}" alt="" class="avatar_">
@@ -167,8 +181,7 @@
                     </span>
                 @endif
             </div>
-{{--
-            <div class="col-lg-4 col-md-5 col-sm-6">
+            {{-- <div class="col-lg-4 col-md-5 col-sm-6">
                 <label for="" class="theme-label">Dealers</label>
                 <select name="user_id" id="" class="theme-select">
                     <option value="" selected disabled>Select Dealer</option>
@@ -306,6 +319,7 @@
             </div>
         </div>
 
+        {{-- <div style="page-break-after: always;"></div> --}}
         <h1 class="small-heading">Nominee information</h1>
         <div class="row">
             <div class="col-sm-6">
@@ -346,7 +360,11 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-end pt-3">
+        <div class="d-flex justify-content-end pt-3 print-none">
+            {{-- <a href="{{route('generate-file-pdf')}}" class="me-3">
+                <button class="theme-btn" type="button">Download Receipt</button>
+            </a> --}}
+            <button class="theme-btn me-3" type="button" onclick="print()">Print Receipt</button>
             <button class="theme-btn" style="width:150px;">{{isset($form) ? 'Update File' : 'Create File'}} </button>
         </div>
     </div>
