@@ -231,7 +231,6 @@ class FormController extends Controller
             'nominee_cnic' => 'required',
             'nominee_passport' => 'required',
         ]);
-
         $form = [
             'app_no'=>$request->app_no,
             'reg_no'=>$request->reg_no,
@@ -247,7 +246,7 @@ class FormController extends Controller
             'extra_lan'=>$request->extra_land,
             'extra_land_cost'=>$request->extra_land_cost,
             'booking_data'=>$request->booking_date,
-            'total_price'=>$request->total_price,
+            'total_price'=> intval(preg_replace('/[^\d.]/', '', $request->total_price)),
             'applicant_name'=>$request->name_of_applicant,
             'aplicant_type'=>$request->applicant_type,
             'cnic'=>$request->cnic_no,
@@ -293,8 +292,8 @@ class FormController extends Controller
         $name = $request->name;
         $amount = $request->amount;
         $installment_date = $request->installment_date;
-        $total_price = $request->total_price;
-        $down_payment = $request->down_payment;
+        $total_price = intval(preg_replace('/[^\d.]/', '', $request->total_price));
+        $down_payment = intval(preg_replace('/[^\d.]/', '', $request->down_payment));
         $user_id = $request->user_id;
         $form = Form::find($id);
         if($form){
@@ -321,7 +320,7 @@ class FormController extends Controller
         $this->validate($request, [
             'total_commission' => 'required',
         ]);
-        $total_commission = $request->total_commission;
+        $total_commission = intval(preg_replace('/[^\d.]/', '', $request->total_commission));
         $data = array('total_commission' =>$total_commission,'created_at'=>Carbon::now());
         Commission::insert($data);
         return redirect('commission-calculation')->with(['success_msg'=> 'Commission updated successfully']);
@@ -429,6 +428,15 @@ class FormController extends Controller
         ,'block.name','block_plots.plot_size')->join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('forms.id',$id)->first();
 
         $pdf = PDF::loadview('pages.pdf',$data);
+        return $pdf->download(time().'.pdf');
+    }
+    public function generateFilePDF(){
+
+        $data["result"] = Form::select('forms.id','forms.created_at','forms.applicant_name',
+        'forms.email','forms.plot_no','forms.street_no','forms.plot_type'
+        ,'block.name','block_plots.plot_size')->join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('forms.id',1)->first();
+
+        $pdf = PDF::loadview('pages.file_pages',$data);
         return $pdf->download(time().'.pdf');
     }
 

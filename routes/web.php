@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('users', UserController::class);
     Route::GET('generate-pdf/{id}', [FormController::class, 'generatePDF'])->name('generate-pdf');
+    Route::GET('generate-file-pdf', [FormController::class, 'generateFilePDF'])->name('generate-file-pdf');
+
     Route::GET('form/financial/{id}', [FormController::class, 'viewFinancial'])->name('financial.view');
     Route::POST('add-financial', [FormController::class, 'addFinancial'])->name('financial.add');
     Route::POST('add-commission', [FormController::class, 'addCommission'])->name('commission.add');

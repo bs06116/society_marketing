@@ -237,8 +237,8 @@ class UserController extends Controller
     public function dealerDeatils($id){
        $data["total_residentail_dealer"] = DB::table('forms')->where("user_id",$id)->where("plot_type","residential")->count();
        $data["total_commerical_dealer"] = DB::table('forms')->where("user_id",$id)->where("plot_type","commercial")->count();
-       $data["residentialPlot"] = Form::join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('plot_type','residential')->groupBy('plot_size')->selectRaw('count(*) as total_plot,forms.id,block.name,block_plots.plot_size')->get();
-       $data["commercialPlot"] = Form::join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('plot_type','commercial')->groupBy('plot_size')->selectRaw('count(*) as total_plot,forms.id,block.name,block_plots.plot_size')->get();
+       $data["residentialPlot"] = Form::join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where("forms.user_id",$id)->where('plot_type','residential')->groupBy('plot_size')->selectRaw('count(*) as total_plot,forms.id,block.name,block_plots.plot_size')->get();
+       $data["commercialPlot"] = Form::join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where("forms.user_id",$id)->where('plot_type','commercial')->groupBy('plot_size')->selectRaw('count(*) as total_plot,forms.id,block.name,block_plots.plot_size')->get();
 
        return view('pages.dealer-detail',$data);
     }

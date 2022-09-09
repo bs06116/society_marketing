@@ -3,6 +3,7 @@
 <form method="POST" action="{{url('save-form')}}" enctype="multipart/form-data">
 @csrf
 <input type="hidden" value="{{isset($form->id)?$form->id:''}}" name="form_id">
+<a href="{{route('generate-file-pdf')}}">Download Receipt</a>
 <div class="main-padding">
     <div class="table-card">
         <div class="d-flex align-items-center justify-content-between mb-4">
