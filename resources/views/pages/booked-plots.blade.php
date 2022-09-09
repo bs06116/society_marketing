@@ -44,7 +44,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('book.plot') }}",
+                    url: "{{ route('booked.plots') }}",
                     data: function(d) {
                         //   d.approved = $('#approved').val(),
                         //  d.search = $('input[type="search"]').val()
@@ -66,7 +66,7 @@
                     },
                     {
                         data: 'action',
-                        name: 'actions'
+                        name: 'action'
                     }
                 ]
             });

@@ -65,7 +65,7 @@
                     },
                     {
                         data: 'action',
-                        name: 'actions'
+                        name: 'action'
                     }
                 ]
             });

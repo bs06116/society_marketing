@@ -207,7 +207,7 @@ class BlockController extends Controller
 
     public function get_blocks($category)
     {
-        return Block::where(['plot_catergory'=> $category])->get();
+        return Block::where(['plot_catergory'=> $category])->orwhere("plot_catergory","both")->get();
     }
 
     public function bookPlot(Request $request)

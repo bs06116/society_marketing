@@ -95,6 +95,7 @@
                     </a>
                 </li>
                 @endcan
+                @canany(['dealer-sold-plot'])
 
                 <li>
                     <a href="{{ route('dealers-booked-plots') }}" <?php if(request()->is('dealers-booked-plots')){ echo "class='active'";} ?> title="Dealers">
@@ -102,6 +103,8 @@
                         <span>Dealers Sale Plot </span>
                     </a>
                 </li>
+                @endcan
+
 
                 @canany(['user-view'])
                 <li>

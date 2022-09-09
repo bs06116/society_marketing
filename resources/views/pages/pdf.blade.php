@@ -55,32 +55,32 @@
         <h3 class="golden-heading">ACCOUNT DEPARTMENT</h3>
         <div>
             <div class="float-left">
-                <h2 class="text">Date: <span>9/6/2022</span></h2>
+                <h2 class="text">Date: <span>{{date("d-m-Y", strtotime($result->created_at) )}}</span></h2>
             </div>
             <div class="float-right">
-                <h2 class="text">Receipt No. <span>125</span></h2>
+                <h2 class="text">Receipt No. <span>{{$result->id}}</span></h2>
             </div>
         </div>
         <div class="clear-both" style="padding-top:20px;"></div>
-        <h2 class="text">Customer's Name: <span class="span">Asim Riaz</span></h2>
+        <h2 class="text">Customer's Name: <span class="span">{{$result->applicant_name}}</span></h2>
         <div class="clear-both"></div>
         <div>
             <div class="float-left" style="width:48%;">
-                <h2 class="text">Plot No. <span class="span">A - 69</span></h2>
+                <h2 class="text">Plot No. <span class="span">{{$result->name}} - {{$result->plot_no}}</span></h2>
             </div>
             <div class="float-right" style="width:48%; text-align:left;">
-                <h2 class="text">Amount received: <span class="span">120,000</span></h2>
+                <h2 class="text">Amount received: <span class="span">{{$result->name}}</span></h2>
             </div>
         </div>
-        <div class="clear-both"></div>
-        <h2 class="text">Amount in word: <span class="span">one Lac and Twenty Thousand</span></h2>
+        {{-- <div class="clear-both"></div>
+        <h2 class="text">Amount in word: <span class="span">one Lac and Twenty Thousand</span></h2> --}}
         <div class="clear-both"></div>
         <div>
             <div class="float-left" style="width:48%;">
-                <h2 class="text">Remaining Amount: <span class="span">85,000</span></h2>
+                <h2 class="text">Remaining Amount: <span class="span">{{number_format(\App\Models\Installment::where('forms_id',$result->id)->sum('amount'))}}</span></h2>
             </div>
             <div class="float-right" style="width:48%; text-align:left;">
-                <h2 class="text">Installment No. <span class="span">Downpayment</span></h2>
+                <h2 class="text">Total Installment <span class="span">{{\App\Models\Installment::where('forms_id',$result->id)->count()}}</span></h2>
             </div>
         </div>
         <div class="clear-both"></div>
