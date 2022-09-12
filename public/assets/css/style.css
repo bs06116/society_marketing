@@ -400,7 +400,11 @@ select[name="myTable_length"] {
     height: 40px;
     outline: none;
 }
-.theme-input::placeholder {
+.select2-container--default .select2-search--inline .select2-search__field {
+    font-size: 13px !important;
+}
+.theme-input::placeholder,
+.select2-container--default .select2-search--inline .select2-search__field {
     color: #b6b6b6;
 }
 .select2-container {
@@ -712,4 +716,27 @@ label.error {
 .dealer-card h6 span {
     font-weight: 400;
     padding-left: 8px;
+}
+.tox-promotion {
+    display: none !important;
+}
+.w-100 .select2 {
+    width: 100% !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: white !important;
+    font-size: 12px !important;
+    color: #6e6e6e !important;
+    padding: 3px 15px 3px 5px !important;
+    margin-top: 0 !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    border-right: 0 !important;
+    right: 2px !important;
+    left: inherit !important;
+    top: 3px !important;
+}
+.select2-selection__clear {
+    margin-top: 3px !important;
+    color: grey;
 }

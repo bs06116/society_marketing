@@ -208,7 +208,7 @@ class UserController extends Controller
             $d->name = $d->name;
             $d->phone_number = $d->phone_number;
             $d->total_plots = DB::table('forms')->where("user_id",$d->id)->count();
-            $d->action = '<a href="'.route('dealer-detail',$d->id).'">View</a>';
+            $d->action = '<a href="'.route('dealer-detail',$d->id).'"><button class="btn-none"><img src="'.asset("assets/images/svg/view.svg").'" alt="" width="18"></button></a>';
         }
         return [
             "draw" => request('draw'),
