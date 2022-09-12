@@ -31,7 +31,7 @@
         <div class="row mb-2">
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">App No</label>
-                <input type="number" name="app_no" value="{{isset($form) ? $form->app_no : old('app_no')}}" class="theme-input" placeholder="App No">
+                <input type="text" name="app_no" value="{{isset($form) ? $form->app_no : old('app_no')}}" class="theme-input" placeholder="App No">
                 @if($errors->has('app_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('app_no') }}</strong>
@@ -40,7 +40,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">Reg No</label>
-                <input type="number" value="{{isset($form) ? $form->reg_no : old('reg_no')}}" name="reg_no" class="theme-input" placeholder="Reg No">
+                <input type="text" value="{{isset($form) ? $form->reg_no : old('reg_no')}}" name="reg_no" class="theme-input" placeholder="Reg No">
                 @if($errors->has('reg_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('reg_no') }}</strong>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <label for="" class="theme-label">Form No</label>
-                <input type="number" value="{{isset($form) ? $form->form_no : old('form_no')}}" name="form_no" class="theme-input" placeholder="Form No">
+                <input type="text" value="{{isset($form) ? $form->form_no : old('form_no')}}" name="form_no" class="theme-input" placeholder="Form No">
                 @if($errors->has('form_no'))
                     <span class="fields-error" role="alert">
                         <strong style="color: red;">{{ $errors->first('form_no') }}</strong>

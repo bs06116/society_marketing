@@ -57,16 +57,16 @@
         </div>
     </div>
     @endcan
+    @canany(['create-form'])
+
     <div class="table-card">
         <div class="row">
             <div class="d-flex align-items-center justify-content-between">
                 <h1 class="heading">Filter File</h1>
-                @canany(['create-form'])
 
                 <a href="{{ route('forms.create') }}">
                     <button class="theme-btn">Add File</button>
                 </a>
-                @endcan
             </div>
             <div class="col-lg-10 mb-3">
                 <div class="d-flex align-items-center">
@@ -97,6 +97,8 @@
             </div>
         </div>
     </div>
+    @endcan
+
 </div>
 
 

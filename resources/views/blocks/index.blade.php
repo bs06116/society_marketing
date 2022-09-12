@@ -5,11 +5,9 @@
     <div class="table-card">
         <div class="d-flex justify-content-between align-items-start mb-4">
             <h1 class="heading">Blocks</h1>
-            @canany(['user-add'])
             <a href="{{ route('blocks.create') }}">
                 <button class="theme-btn me-2">Add New Block</button>
             </a>
-            @endcan
         </div>
         <div class="table-responsive">
             <table id="myTable" class="theme-table">
