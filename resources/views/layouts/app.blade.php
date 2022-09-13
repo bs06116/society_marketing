@@ -105,6 +105,12 @@
                 </li>
                 @endcan
 
+                <li>
+                    <a href="{{ url('email-campaign') }}" <?php if(request()->is('email-campaign')){ echo "class='active'";} ?> title="Email Campaign">
+                        <img src="{{ asset('assets/images/svg/email.svg') }}" alt="">
+                        <span>Email Campaign</span>
+                    </a>
+                </li>
 
                 @canany(['user-view'])
                 <li>

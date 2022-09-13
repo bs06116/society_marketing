@@ -85,9 +85,9 @@ Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
 
-// Route::get('/dealer-detail', function () {
-//     return view('pages.dealer-detail');
-// });
+Route::get('/email-campaign', function () {
+    return view('pages.email-campaign');
+});
 
 // Route::get('/create-file', function () {
 //     return view('pages.create-file');
