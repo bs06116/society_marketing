@@ -62,6 +62,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::POST('save-form', [FormController::class, 'save_form']);
     Route::GET('dashboard-dealer', [FormController::class, 'dealerDashbaord'])->name('dashboard-dealer');
     Route::POST('check-application', [FormController::class, 'checkApplication'])->name('appliction.check');
+    Route::GET('email', [HomeController::class, 'email'])->name('email');
+    Route::POST('submit-email', [HomeController::class, 'submitEmail'])->name('submit-email');
+
+
     // Route::get('/booked-plots', function () {
     //     return view('pages.booked-plots');
     // });
@@ -85,9 +89,9 @@ Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
 
-Route::get('/email-campaign', function () {
-    return view('pages.email-campaign');
-});
+// Route::get('/email-campaign', function () {
+//     return view('pages.email-campaign');
+// });
 
 // Route::get('/create-file', function () {
 //     return view('pages.create-file');

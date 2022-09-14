@@ -5,23 +5,30 @@
 
 <div class="main-padding">
     <div class="table-card">
-        <h1 class="heading">Email Campaign</h1>
-        <div class="row mb-3">
+        <h1 class="heading">Email</h1>
+        <form method="POST" action="{{route("submit-email")}}">
+            @csrf
+            <div class="row mb-3">
             <div class="col-sm-6">
                 <div class="w-100">
                     <label class="theme-label">Send To</label>
-                    <select id="send-to" multiple>
-                        <option>Asim Riaz</option>
-                        <option>Zubair Ahmad</option>
+                    <select id="send-to" name="user[]" multiple>
+                        @foreach($users as $user)
+                        <option {{$user->email}}>{{$user->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-sm-6">
                 <label class="theme-label">Subject</label>
-                <input type="text" class="theme-input" placeholder="Subject">
+                <input type="text" class="theme-input" name="subject" placeholder="Subject">
             </div>
         </div>
         <textarea id="create-email" name="email_message"></textarea>
+        <br>
+        <button type="submit" class="theme-btn" style="width:150px;">Submit</button>
+
+    </form>
     </div>
 </div>
 @endsection

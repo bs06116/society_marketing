@@ -423,10 +423,9 @@ class FormController extends Controller
 
     public function generatePDF($id){
 
-        $data["result"] = Form::select('forms.id','forms.created_at','forms.applicant_name',
+        $data["result"] = Form::select('forms.id','forms.total_price','forms.down_payment','forms.created_at','forms.applicant_name',
         'forms.email','forms.plot_no','forms.street_no','forms.plot_type'
         ,'block.name','block_plots.plot_size')->join('block', 'block.id', '=', 'forms.block_no')->join('block_plots', 'block_plots.id', '=', 'forms.plot_size')->where('forms.id',$id)->first();
-
         $pdf = PDF::loadview('pages.pdf',$data);
         return $pdf->download(time().'.pdf');
     }

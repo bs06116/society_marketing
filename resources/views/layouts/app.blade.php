@@ -106,9 +106,9 @@
                 @endcan
 
                 <li>
-                    <a href="{{ url('email-campaign') }}" <?php if(request()->is('email-campaign')){ echo "class='active'";} ?> title="Email Campaign">
+                    <a href="{{ route('email') }}" <?php if(request()->is('email-campaign')){ echo "class='active'";} ?> title="Email Campaign">
                         <img src="{{ asset('assets/images/svg/email.svg') }}" alt="">
-                        <span>Email Campaign</span>
+                        <span>Email </span>
                     </a>
                 </li>
 
@@ -130,7 +130,7 @@
                     <button class="btn-none p-0 aside-toggle d-xl-none me-3">
                         <img src="{{ asset('assets/images/svg/menu2.svg') }}" alt="menu" width="22px">
                     </button>
-                    <div id="google_translate_element"></div>
+                    {{-- <div id="google_translate_element"></div> --}}
                 </div>
 
                 <div class="profile-info" id="profile-toggle">

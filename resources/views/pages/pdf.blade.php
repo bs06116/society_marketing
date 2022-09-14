@@ -69,15 +69,16 @@
                 <h2 class="text">Plot No. <span class="span">{{$result->name}} - {{$result->plot_no}}</span></h2>
             </div>
             <div class="float-right" style="width:48%; text-align:left;">
-                <h2 class="text">Amount received: <span class="span">{{$result->name}}</span></h2>
+                <h2 class="text">Amount received: <span class="span">{{number_format($result->down_payment + \App\Models\Installment::where('forms_id',$result->id)->sum('amount'))}}</span></h2>
             </div>
         </div>
         {{-- <div class="clear-both"></div>
         <h2 class="text">Amount in word: <span class="span">one Lac and Twenty Thousand</span></h2> --}}
         <div class="clear-both"></div>
         <div>
+
             <div class="float-left" style="width:48%;">
-                <h2 class="text">Remaining Amount: <span class="span">{{number_format(\App\Models\Installment::where('forms_id',$result->id)->sum('amount'))}}</span></h2>
+                <h2 class="text">Remaining Amount: <span class="span">{{number_format($result->total_price - ($result->down_payment + \App\Models\Installment::where('forms_id',$result->id)->sum('amount')))}}</span></h2>
             </div>
             <div class="float-right" style="width:48%; text-align:left;">
                 <h2 class="text">Total Installment <span class="span">{{\App\Models\Installment::where('forms_id',$result->id)->count()}}</span></h2>
