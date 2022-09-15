@@ -142,13 +142,15 @@
             }
         });
         $('.plot-size-plus').click(function(){
-            var parentHtml = $(this).parent().find('.flex-grow-1').html();
+            var residentHtml =  $(this).attr('data-val');
             var plot_category = '';
            if(residentHtml == 'commercial'){
             plot_category = '<input type="hidden"  name="block_category[]" value="commercial">';
            }else{
             plot_category = '<input type="hidden"  name="block_category[]" value="residential">';
            }
+           var parentHtml = $(this).parent().find('.flex-grow-1').html();
+
             $(this).parent().parent().parent().after(`
                 <div class="row plot-size-append-divs">
                     <div class="col-lg-4 col-md-6 plot-size-div">

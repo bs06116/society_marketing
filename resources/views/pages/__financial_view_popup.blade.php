@@ -36,8 +36,11 @@
 </div>
 <div class="flex-center selection-footer">
     <a href="{{url('edit-file',$result->id)}}"><button class="theme-btn me-2">File View</button></a>
+    @canany(['view-financial'])
     <a href="{{ route('financial.view',$result->id) }}">
         <button class="theme-btn">Financial View</button>
     </a>
+    @endcan
+
 </div>
 </div>
