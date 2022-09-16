@@ -1,8 +1,18 @@
 
 <div class="file-info-main">
 
+    @if ($result->image)
+    @php
+        $imageName = $result->image;
+    @endphp
+    @else
+        @php
+            $imageName = "logo.png";
+        @endphp
+    @endif
+
 <div class="d-flex align-items-center mb-4 pb-2">
-    <img src="{{ asset('assets/images/'.!empty($result->image)?$result->image:'avatar-2.png') }}" alt="" class="avatar">
+    <img src="{{ asset('assets/images/'.$imageName) }}" alt="" class="avatar">
     <div>
         <h6 class="name m-0">{{$result->applicant_name}}</h6>
         <p class="email m-0">{{$result->email}}</p>
