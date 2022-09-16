@@ -230,7 +230,7 @@
 
         <h1 class="small-heading print-float-left">For office use only</h1>
         <div class="print-payment">
-            <label class="theme-label">Payment: Lump sum</label>
+            <label class="theme-label">Payment: {{isset($form)? $form->payment_type :old('extra_land_cost')}}</label>
         </div>
         <div style="clear: both;"></div>
         <div class="table-card mb-3">
@@ -271,6 +271,16 @@
                         </span>
                     @endif
                 </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 print-col-3">
+                    <label for="" class="theme-label">Down Payment</label>
+                    <input type="text" value="{{isset($form) ? $form->down_payment : old('down_payment')}}" name="down_payment" class="theme-input format-commas-input" placeholder="Down Payment">
+                    @if($errors->has('down_payment'))
+                        <span class="fields-error" role="alert">
+                            <strong style="color: red;">{{ $errors->first('down_payment') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
             </div>
         </div>
 
@@ -404,7 +414,9 @@
             {{-- <a href="{{route('generate-file-pdf')}}" class="me-3">
                 <button class="theme-btn" type="button">Download Receipt</button>
             </a> --}}
+            @if (isset($form))
             <button class="theme-btn me-3" type="button" onclick="print()">Print File</button>
+            @endif
             <button class="theme-btn" style="width:150px;">{{isset($form) ? 'Update File' : 'Create File'}} </button>
         </div>
     </div>

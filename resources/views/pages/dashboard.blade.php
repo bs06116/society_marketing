@@ -33,7 +33,7 @@
                 <h2>Total Balance</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/balance.svg') }}" alt="">
-                    <h1 class="format-commas">{{\App\Models\Form::sum('total_price') - \App\Models\Installment::sum('amount')}}</h1>
+                    <h1 class="format-commas">{{\App\Models\Form::sum('total_price') - (\App\Models\Form::sum('down_payment') + \App\Models\Installment::sum('amount'))}}</h1>
                 </div>
             </div>
         </div>

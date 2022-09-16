@@ -200,6 +200,7 @@ class FormController extends Controller
     }
     public function save_form(Request $request)
     {
+
         // return $request->image;
         // $this->validate($request, [
         //     'app_no' => 'required|unique:forms,app_no,'.$request->form_id,
@@ -247,6 +248,7 @@ class FormController extends Controller
             'extra_land_cost'=>$request->extra_land_cost,
             'booking_data'=>$request->booking_date,
             'total_price'=> intval(preg_replace('/[^\d.]/', '', $request->total_price)),
+            'down_payment' =>intval(preg_replace('/[^\d.]/', '', $request->down_payment)),
             'applicant_name'=>$request->name_of_applicant,
             'aplicant_type'=>$request->applicant_type,
             'cnic'=>$request->cnic_no,
