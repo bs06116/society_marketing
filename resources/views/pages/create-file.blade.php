@@ -10,9 +10,45 @@
         .main-padding {
             padding: 0;
         }
+        .table-card {
+            padding: 15px;
+        }
+        .theme-input, .theme-select {
+            height: 32px;
+            margin-bottom: 10px
+        }
+        .theme-label {
+            font-size: 12px;
+        }
+        .print-col-4 {
+            width: 33%
+        }
+        .print-col-3 {
+            width: 25%;
+        }
+        .print-col-6 {
+            width: 50%
+        }
+        .small-heading {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .print-mb-10 {
+            margin-bottom: 10px
+        }
+        .print-payment {
+            display: block !important;
+            float: right;
+        }
+        .print-float-left {
+            float: left;
+        }
     }
     @page {
-        margin: 25px;
+        margin: 10px 15px;
+    }
+    .print-payment {
+        display: none;
     }
 </style>
 <form method="POST" action="{{url('save-form')}}" enctype="multipart/form-data">
@@ -20,16 +56,16 @@
 <input type="hidden" value="{{isset($form->id)?$form->id:''}}" name="form_id">
 <div class="main-padding">
     <div class="table-card">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid" width="75">
+        <div class="d-flex align-items-center justify-content-between mb-4 print-mb-10">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid print-width-50" width="75">
             <h1 class="heading text-center">Application Form</h1>
             <div class="position-relative">
-                <img src="{{ isset($form) ? (!empty($form->image) ? asset($form->image) : asset('assets/images/avatar3.png')) : asset('assets/images/avatar3.png') }}" alt="" class="avatar_">
+                <img src="{{ isset($form) ? (!empty($form->image) ? asset($form->image) : asset('assets/images/avatar3.png')) : asset('assets/images/avatar3.png') }}" alt="" class="avatar_ print-width-50">
                 <input type="file" name="image" id="" class="imgInp position-absolute inset-0 w-100 h-100 opacity-0" accept="image/*">
             </div>
         </div>
         <div class="row mb-2">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 print-col-4">
                 <label for="" class="theme-label">App No</label>
                 <input type="text" name="app_no" value="{{isset($form) ? $form->app_no : old('app_no')}}" class="theme-input" placeholder="App No">
                 @if($errors->has('app_no'))
@@ -38,7 +74,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 print-col-4">
                 <label for="" class="theme-label">Reg No</label>
                 <input type="text" value="{{isset($form) ? $form->reg_no : old('reg_no')}}" name="reg_no" class="theme-input" placeholder="Reg No">
                 @if($errors->has('reg_no'))
@@ -47,7 +83,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 print-col-4">
                 <label for="" class="theme-label">Form No</label>
                 <input type="text" value="{{isset($form) ? $form->form_no : old('form_no')}}" name="form_no" class="theme-input" placeholder="Form No">
                 @if($errors->has('form_no'))
@@ -61,7 +97,7 @@
         <div class="table-card mb-3">
             <label for="" class="theme-label ms-0"><span class="f-15">Preferred choice</span> <span class="f-13 weight-400">(Subject to Availibility)</span></label>
             <div class="row">
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 print-col-4">
                     <label for="" class="theme-label">Type</label>
                     <select name="type" id="" class="theme-select category">
                         <option value="" selected disabled>Select type</option>
@@ -75,7 +111,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 print-col-4">
                     <label for="" class="theme-label">Block/Sector</label>
                     <select name="block" id="" class="theme-select blocks">
                         <option value="" selected disabled>Select block/sector</option>
@@ -91,7 +127,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 print-col-4">
                     <label for="" class="theme-label">Plot size</label>
                     <select name="plot_size" id="" class="theme-select plot_size">
                         <option value="" selected disabled>Select size</option>
@@ -107,7 +143,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 print-col-4">
                     <label for="" class="theme-label">Plot No</label>
                     <input type="number" value="{{isset($form) ? $form->plot_no : old('plot_no')}}" name="plot_no" class="theme-input" placeholder="Plot No">
                     @if($errors->has('plot_no'))
@@ -116,7 +152,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 print-col-4">
                     <label for="" class="theme-label">Street No</label>
                     <input type="number" value="{{isset($form) ? $form->street_no : old('street_no')}}" name="street_no" class="theme-input" placeholder="Street No">
                     @if($errors->has('street_no'))
@@ -125,7 +161,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 print-col-4">
                     <label for="" class="theme-label">Location/Type</label>
                     <input type="text" value="{{isset($form) ? $form->location : old('location_type')}}" name="location_type" class="theme-input" placeholder="Location/Type">
                     @if($errors->has('location_type'))
@@ -167,7 +203,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row print-none">
             <div class="col-lg-4 col-md-5 col-sm-6">
                 <label for="" class="theme-label">Payment</label>
                 <select name="payment" id="" class="theme-select">
@@ -192,10 +228,14 @@
             </div> --}}
         </div>
 
-        <h1 class="small-heading">For office use only</h1>
+        <h1 class="small-heading print-float-left">For office use only</h1>
+        <div class="print-payment">
+            <label class="theme-label">Payment: Lump sum</label>
+        </div>
+        <div style="clear: both;"></div>
         <div class="table-card mb-3">
             <div class="row mb-2">
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 print-col-3">
                     <label for="" class="theme-label">Extra Land</label>
                     <input type="text" value="{{isset($form) ? $form->extra_lan : old('extra_land')}}" name="extra_land" class="theme-input" placeholder="Extra land">
                     @if($errors->has('extra_land'))
@@ -204,7 +244,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 print-col-3">
                     <label for="" class="theme-label">Extra Land Cost</label>
                     <input type="text" name="extra_land_cost" value="{{isset($form)? $form->extra_land_cost :old('extra_land_cost')}}" class="theme-input format-commas-input" placeholder="Extra land cost">
                     @if($errors->has('extra_land_cost'))
@@ -213,7 +253,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 print-col-3">
                     <label for="" class="theme-label">Booking Data</label>
                     <input type="date" value="{{isset($form) ? $form->booking_data : old('booking_date')}}" name="booking_date" class="theme-input" placeholder="Booking data">
                     @if($errors->has('booking_date'))
@@ -222,7 +262,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 print-col-3">
                     <label for="" class="theme-label">Total Price</label>
                     <input type="text" value="{{isset($form) ? $form->total_price : old('total_price')}}" name="total_price" class="theme-input format-commas-input" placeholder="Total Price">
                     @if($errors->has('total_price'))
@@ -236,7 +276,7 @@
 
         <h1 class="small-heading">Personal information</h1>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">Name of Applicant</label>
                 <input type="text" value="{{isset($form) ? $form->applicant_name : old('name_of_applicant')}}" name="name_of_applicant" class="theme-input" placeholder="Name of applicant">
                 @if($errors->has('name_of_applicant'))
@@ -245,7 +285,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">S/O, D/0, W/O</label>
                 <input type="text" value="{{isset($form) ? $form->aplicant_type : old('applicant_type')}}" name="applicant_type" class="theme-input" placeholder="S/O, D/0, W/O">
                 @if($errors->has('applicant_type'))
@@ -254,7 +294,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">CNIC No</label>
                 <input type="text" value="{{isset($form) ? $form->cnic : old('cnic_no')}}" name="cnic_no" class="theme-input cnic" placeholder="XXXXX-XXXXXXX-X">
                 @if($errors->has('cnic_no'))
@@ -263,7 +303,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">Passport No</label>
                 <input type="number" value="{{isset($form) ? $form->passport_no : old('passport_no')}}" name="passport_no" class="theme-input" placeholder="Passport No">
                 @if($errors->has('passport_no'))
@@ -272,7 +312,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">Mailing Address</label>
                 <input type="text"value="{{isset($form) ? $form->mail_address : old('mailing_address')}}"  name="mailing_address" class="theme-input" placeholder="Mailing address">
                 @if($errors->has('mailing_address'))
@@ -281,7 +321,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">Permanent Address</label>
                 <input type="text" value="{{isset($form) ? $form->permanent_address : old('permanent_address')}}" name="permanent_address" class="theme-input" placeholder="Permanent address">
                 @if($errors->has('permanent_address'))
@@ -290,7 +330,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-4 col-sm-6 print-col-4">
                 <label for="" class="theme-label">Phone No</label>
                 <input type="number" value="{{isset($form) ? $form->phone_no : old('phone_no')}}" name="phone_no" class="theme-input" placeholder="Phone No">
                 @if($errors->has('phone_no'))
@@ -299,7 +339,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-4 col-sm-6 print-col-4">
                 <label for="" class="theme-label">Mobile No</label>
                 <input type="number" value="{{isset($form) ? $form->mobile_no : old('mobile_no')}}" name="mobile_no" class="theme-input" placeholder="Mobile No">
                 @if($errors->has('mobile_no'))
@@ -308,7 +348,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-4 col-sm-6 print-col-4">
                 <label for="" class="theme-label">Email</label>
                 <input type="email" value="{{isset($form) ? $form->email : old('email')}}" name="email" class="theme-input" placeholder="Email">
                 @if($errors->has('email'))
@@ -322,7 +362,7 @@
         {{-- <div style="page-break-after: always;"></div> --}}
         <h1 class="small-heading">Nominee information</h1>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">Name of Applicant</label>
                 <input type="text" value="{{isset($form) ? $form->nominee_applicant_name : old('nominee_name')}}" name="nominee_name" class="theme-input" placeholder="Name of applicant">
                 @if($errors->has('nominee_name'))
@@ -331,7 +371,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">S/O, D/0, W/O</label>
                 <input type="text" value="{{isset($form) ? $form->nominee_applicant_type : old('nominee_type')}}" name="nominee_type" class="theme-input" placeholder="S/O, D/0, W/O">
                 @if($errors->has('nominee_type'))
@@ -340,7 +380,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">CNIC No</label>
                 <input type="text" value="{{isset($form) ? $form->nominee_applicant_cnic : old('nominee_cnic')}}" name="nominee_cnic" class="theme-input cnic" placeholder="XXXXX-XXXXXXX-X">
                 @if($errors->has('nominee_cnic'))
@@ -349,7 +389,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 print-col-4">
                 <label for="" class="theme-label">Passport No</label>
                 <input type="number" value="{{isset($form) ? $form->nominee_applicant_passport : old('nominee_passport')}}" name="nominee_passport" class="theme-input" placeholder="Passport No">
                 @if($errors->has('nominee_passport'))
@@ -364,7 +404,7 @@
             {{-- <a href="{{route('generate-file-pdf')}}" class="me-3">
                 <button class="theme-btn" type="button">Download Receipt</button>
             </a> --}}
-            <button class="theme-btn me-3" type="button" onclick="print()">Print Receipt</button>
+            <button class="theme-btn me-3" type="button" onclick="print()">Print File</button>
             <button class="theme-btn" style="width:150px;">{{isset($form) ? 'Update File' : 'Create File'}} </button>
         </div>
     </div>
