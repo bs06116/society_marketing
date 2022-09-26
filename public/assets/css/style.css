@@ -1,6 +1,7 @@
 :root {
     --green: #009200;
-    --theme-clr: #e2a324;
+    --red: #d9534f;
+    --theme-clr: #e99c06;
 }
 body {
     font-family: "Poppins", sans-serif;
@@ -14,6 +15,9 @@ body {
 }
 .green-clr {
     color: var(--green) !important;
+}
+.red-clr {
+    color: var(--red) !important;
 }
 p {
     color: grey;
@@ -723,14 +727,18 @@ label.error {
 .w-100 .select2 {
     width: 100% !important;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__choice {
     background-color: white !important;
     font-size: 12px !important;
     color: #6e6e6e !important;
     padding: 3px 15px 3px 5px !important;
     margin-top: 0 !important;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__choice__remove {
     border-right: 0 !important;
     right: 2px !important;
     left: inherit !important;
@@ -739,4 +747,10 @@ label.error {
 .select2-selection__clear {
     margin-top: 3px !important;
     color: grey;
+}
+.top-0 {
+    top: 0;
+}
+.left-0 {
+    left: 0;
 }

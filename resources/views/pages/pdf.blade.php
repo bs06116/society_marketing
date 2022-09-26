@@ -19,7 +19,7 @@
                 border-radius: 10px;
                 font-size: 16px;
                 color: white;
-                background-color: #e2a324;
+                background-color: #E99C06;
                 margin: 0 auto 50px;
                 text-align: center;
                 width: 230px;

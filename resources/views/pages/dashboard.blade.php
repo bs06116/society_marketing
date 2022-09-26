@@ -29,7 +29,8 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
-            <div class="top-card">
+            <div class="top-card position-relative">
+                <a href="{{ url('balance') }}" class="position-absolute w-100 h-100 top-0 left-0"></a>
                 <h2>Total Balance</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/balance.svg') }}" alt="">
@@ -38,8 +39,9 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
-            <div class="top-card">
-                <h2>Total Down payment</h2>
+            <div class="top-card position-relative">
+                <a href="{{ url('down-payments') }}" class="position-absolute w-100 h-100 top-0 left-0"></a>
+                <h2>Total Down Payment</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/down-payment.svg') }}" alt="">
                     <h1 class="format-commas">{{\App\Models\Form::sum('down_payment')}}</h1>
@@ -47,7 +49,8 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
-            <div class="top-card">
+            <div class="top-card position-relative">
+                <a href="{{ url('installments') }}" class="position-absolute w-100 h-100 top-0 left-0"></a>
                 <h2>Total Installments</h2>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('assets/images/svg/installments.svg') }}" alt="">

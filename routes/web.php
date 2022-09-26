@@ -89,9 +89,17 @@ Route::get('/commission-calculation', function () {
     return view('pages.commission-calc');
 });
 
-// Route::get('/email-campaign', function () {
-//     return view('pages.email-campaign');
-// });
+Route::get('/installments', function () {
+    return view('pages.installments');
+});
+
+Route::get('/down-payments', function () {
+    return view('pages.down-payments');
+});
+
+Route::get('/balance', function () {
+    return view('pages.balance');
+});
 
 // Route::get('/create-file', function () {
 //     return view('pages.create-file');
